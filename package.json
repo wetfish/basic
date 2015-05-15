@@ -1,0 +1,23 @@
+{
+  "name": "wetfish-basic",
+  "version": "0.0.0",
+  "description": "A tiny, customizable JavaScript UI framework.",
+  "main": "basic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wetfish/basic.git"
+  },
+  "keywords": [
+    "wetfish",
+    "basic"
+  ],
+  "author": "Rachel Fish <rachel@wetfish.net> (https://wetfish.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wetfish/basic/issues"
+  },
+  "homepage": "https://github.com/wetfish/basic#readme"
+}
