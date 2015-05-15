@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Basic.js - A really simple JavaScript framework</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style>
+            body { background-color: #000; }
+            p { color: #fff; }
+            .black { color: #000; }
+
+            .content {
+                width: 200px;
+                height: 100px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -50px;
+                margin-left: -100px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <p class="hello">Hello world!</p>
+            <p class="world">*blink*</p>
+        </div>
+        
+        <script src="basic.js"></script>
+
+        <script>
+            // Match a selector
+            console.log($('.hello'));
+
+            // Get the size of a selector
+            console.log($('.hello').size());
+            console.log($('.world').size());
+
+            // Get the sizes of every matched selector
+            console.log($('div, p').size());
+
+            // Add a class
+            setInterval(function()
+            {
+                $('.world').addClass('black');
+            }, 1000);
+
+            // Remove a class
+            setInterval(function()
+            {
+                $('.world').removeClass('black');
+            }, 2000);
+        </script>
+    </body>
+</html>
