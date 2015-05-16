@@ -68,6 +68,25 @@
         return this;
     }
 
+    public.prototype.hasClass = function(className)
+    {
+        var match = false;
+
+        // TODO: Break loop when match is found?
+        private.forEach(this.elements, function(index, element)
+        {
+            var classes = element.className.split(' ');
+            var index = classes.indexOf(className);
+
+            if(index != -1)
+            {
+                match = true;
+            }
+        });
+
+        return match;
+    }
+
     private.height = function(element)
     {
         var style = element.currentStyle || window.getComputedStyle(element);
@@ -116,6 +135,26 @@
 
         // Otherwise, return an array of sizes
         return output;
+    }
+
+    public.prototype.on = function(event, callback)
+    {
+        private.forEach(this.elements, function(index, element)
+        {
+            element.addEventListener(event, callback);
+        });
+
+        return this;
+    }
+
+    public.prototype.off = function(event, callback)
+    {
+        private.forEach(this.elements, function(index, element)
+        {
+            element.removeEventListener(event, callback);
+        });
+
+        return this;
     }
 
     // Detect if we're in node or a browser
