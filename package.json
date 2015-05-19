@@ -2,7 +2,7 @@
   "name": "wetfish-basic",
   "version": "0.1.0",
   "description": "A tiny, customizable JavaScript UI framework.",
-  "main": "basic.js",
+  "main": "dist/basic.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/wetfish/basic/issues"
   },
-  "homepage": "https://github.com/wetfish/basic#readme"
+  "homepage": "https://github.com/wetfish/basic#readme",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-insert": "^0.4.0",
+    "gulp-replace": "^0.5.3"
+  }
 }
