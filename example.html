@@ -68,6 +68,12 @@
                 // Set the new size
                 this.style['font-size'] = size + 'pt';
             });
+
+            $('.hello').on('click', function()
+            {
+                $(this).addClass('black');
+                console.log('hi');
+            });
         </script>
     </body>
 </html>

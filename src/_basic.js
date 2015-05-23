@@ -10,8 +10,19 @@ var public = function(selector)
     {
         return new public(selector)
     }
-    
-    this.elements = document.querySelectorAll(selector);
+
+    // If the selector is a string
+    if(typeof selector == "string")
+    {
+        // Try matching some elements on the page
+        this.elements = document.querySelectorAll(selector);
+    }
+    else
+    {
+        // Assume an element was passed (like the value of this in an event)
+        this.elements = [selector];
+    }
+
     return this;
 }
 
