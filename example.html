@@ -24,56 +24,59 @@
                 text-align: center;
             }
         </style>
+
+        <script src="dist/basic.js"></script>
+        <script>
+            console.log("Loading page...");
+            
+            $(document).ready(function()
+            {
+                console.log("Page loaded!");
+                
+                // Get the size of some elements
+                console.log("Size of .hello:", $('.hello').size());
+                console.log("Size of .world:", $('.world').size());
+
+                // Get the sizes of every matched selector
+                console.log("Sizes of div, p:", $('div, p').size());
+
+                // Add a class
+                setInterval(function()
+                {
+                    $('.world').addClass('black');
+                }, 1000);
+
+                // Remove a class
+                setInterval(function()
+                {
+                    $('.world').removeClass('black');
+                }, 2000);
+
+                // Bind an event
+                $('.world').on('click', function()
+                {
+                    // Get the current size
+                    var size = parseInt(this.style['font-size']) || 10;
+
+                    // INCREASE IT!!!
+                    size++;
+
+                    // Set the new size
+                    this.style['font-size'] = size + 'pt';
+                });
+
+                $('.hello').on('click', function()
+                {
+                    $(this).addClass('black');
+                    console.log('*poof*');
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="content">
             <p class="hello">Hello world!</p>
             <p class="world">*blink*</p>
-        </div>
-        
-        <script src="dist/basic.js"></script>
-
-        <script>
-            // Match a selector
-            console.log($('.hello'));
-
-            // Get the size of a selector
-            console.log($('.hello').size());
-            console.log($('.world').size());
-
-            // Get the sizes of every matched selector
-            console.log($('div, p').size());
-
-            // Add a class
-            setInterval(function()
-            {
-                $('.world').addClass('black');
-            }, 1000);
-
-            // Remove a class
-            setInterval(function()
-            {
-                $('.world').removeClass('black');
-            }, 2000);
-
-            // Bind an event
-            $('.world').on('click', function()
-            {
-                // Get the current size
-                var size = parseInt(this.style['font-size']) || 10;
-
-                // INCREASE IT!!!
-                size++;
-
-                // Set the new size
-                this.style['font-size'] = size + 'pt';
-            });
-
-            $('.hello').on('click', function()
-            {
-                $(this).addClass('black');
-                console.log('hi');
-            });
-        </script>
+        </div>        
     </body>
 </html>

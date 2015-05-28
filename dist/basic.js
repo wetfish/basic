@@ -138,6 +138,27 @@
     }
 
     ////////////////////////////////
+    // ready() - wait for the page to load before firing callback
+    // usage - $(document).ready, function() { console.log('Page ready!'); });
+
+    public.prototype.ready = function(callback)
+    {
+        private.forEach(this.elements, function(index, element)
+        {
+            element.addEventListener('ready', callback);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function()
+    {
+        // Create an event
+        var ready = new CustomEvent('ready');
+
+        // Trigger it!
+        document.dispatchEvent(ready);
+    })
+
+    ////////////////////////////////
     // removeClass() - remove a class from all matched nodes
     // usage - $('.selector').removeClass('example');
 
