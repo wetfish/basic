@@ -74,16 +74,21 @@
                 }, 2000);
 
                 // Bind an event
-                $('.world').on('click', function()
+                $('.world').on('mousedown', function(event)
                 {
+                    event.preventDefault();
+                    
                     // Get the current size
-                    var size = parseInt(this.style['font-size']) || 10;
+                    var size = parseInt($(this).style('font-size'));
 
+                    // Convert from px to pt
+                    size = Math.ceil(size * 0.75);
+                    
                     // INCREASE IT!!!
                     size++;
 
                     // Set the new size
-                    this.style['font-size'] = size + 'pt';
+                    $(this).style({'font-size': size + 'pt'});
                 });
 
                 // Hide hello world on click

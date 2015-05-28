@@ -6,7 +6,7 @@
 // Private function to determine element height
 private.height = function(element)
 {
-    var style = element.currentStyle || window.getComputedStyle(element);
+    var style = window.getComputedStyle(element);
     var height =
     {
         inner: element.offsetHeight,
@@ -19,7 +19,7 @@ private.height = function(element)
 // Private function to determine element width
 private.width = function(element)
 {
-    var style = element.currentStyle || window.getComputedStyle(element);
+    var style = window.getComputedStyle(element);
     var width =
     {
         inner: element.offsetWidth,
