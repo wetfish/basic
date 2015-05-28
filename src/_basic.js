@@ -26,14 +26,14 @@ var public = function(selector)
     return this;
 }
 
-// An object literal for private functions
-var private =
+// Helper function to loop through elements
+public.prototype.forEach = function(array, callback)
 {
-    forEach: function(array, callback)
+    for(var i = 0, l = array.length; i < l; i++)
     {
-        for(var i = 0, l = array.length; i < l; i++)
-        {
-            callback.call(public, i, array[i]);
-        }
+        callback.call(this, i, array[i]);
     }
-};
+}
+
+// An object literal for private functions
+var private = { };

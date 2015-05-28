@@ -27,17 +27,17 @@
         return this;
     }
 
-    // An object literal for private functions
-    var private =
+    // Helper function to loop through elements
+    public.prototype.forEach = function(array, callback)
     {
-        forEach: function(array, callback)
+        for(var i = 0, l = array.length; i < l; i++)
         {
-            for(var i = 0, l = array.length; i < l; i++)
-            {
-                callback.call(public, i, array[i]);
-            }
+            callback.call(this, i, array[i]);
         }
-    };
+    }
+
+    // An object literal for private functions
+    var private = { };
 
     ////////////////////////////////
     // Check how basic should be exported
@@ -61,7 +61,7 @@
 
     public.prototype.addClass = function(className)
     {
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -86,7 +86,7 @@
         var match = false;
 
         // TODO: Break loop when match is found?
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -115,7 +115,7 @@
 
     public.prototype.off = function(event, callback)
     {
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             element.removeEventListener(event, callback);
         });
@@ -129,7 +129,7 @@
 
     public.prototype.on = function(event, callback)
     {
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             element.addEventListener(event, callback);
         });
@@ -143,15 +143,16 @@
 
     public.prototype.ready = function(callback)
     {
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             element.addEventListener('ready', callback);
         });
     }
 
+    // Native dom loaded event
     document.addEventListener('DOMContentLoaded', function()
     {
-        // Create an event
+        // Create a custom event with a nicer name
         var ready = new CustomEvent('ready');
 
         // Trigger it!
@@ -164,7 +165,7 @@
 
     public.prototype.removeClass = function(className)
     {
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -216,7 +217,7 @@
     {
         var output = [];
 
-        private.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(index, element)
         {
             var size =
             {

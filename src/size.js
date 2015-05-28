@@ -34,7 +34,7 @@ public.prototype.size = function()
 {
     var output = [];
 
-    private.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(index, element)
     {
         var size =
         {

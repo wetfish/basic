@@ -4,7 +4,7 @@
 
 public.prototype.addClass = function(className)
 {
-    private.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(index, element)
     {
         var classes = element.className.split(' ');
         var index = classes.indexOf(className);
