@@ -11,6 +11,8 @@
         <style>
             body { background-color: #000; }
             p { color: #fff; }
+
+            .white { color: #fff; }
             .black { color: #000; }
 
             .content {
@@ -30,7 +32,10 @@
         </style>
 
         <script src="dist/basic.js"></script>
+        
         <script>
+            /* Basic.js usage examples */
+            
             console.log("Loading page...");
             
             $(document).ready(function()
@@ -75,13 +80,39 @@
                     console.log('*poof*');
                 });
 
-                console.log($('div'));
-
+                // Find a child selector within a specific element
                 $('div').find('.hello').addClass('italic');
+
+                // Select specific elements within a matched selector
+                $('.dots .dot').el(3).addClass('white');
+                $('.dots .dot').el(randomInt(0, 9)).addClass('white');
             });
+        </script>
+
+        <script>
+            /* Miscellaneous helper functions */
+
+            // Thanks MDN
+            function randomInt(min, max)
+            {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
         </script>
     </head>
     <body>
+        <div class="dots">
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+        </div>
+
         <div class="content">
             <p class="hello">Hello world!</p>
             <p class="world">*blink*</p>
