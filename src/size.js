@@ -1,5 +1,5 @@
 ////////////////////////////////
-// size() - get the size of a specific node or all matched nodes
+// size() - get the size of a specific element or all matched elements
 // usage - var size = $('.single-selector').size(); // Returns an object containing the element's height and width
 // usage - var size = $('.multi-selector').size(); // Returns an array of objects containing the height and width of all matched elements 
 

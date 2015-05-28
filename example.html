@@ -9,11 +9,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <style>
-            body { background-color: #000; }
-            p { color: #fff; }
+            body {
+                background-color: #000;
+                min-height: 400px;
+                min-width: 600px;
+            }
+            
+            p {
+                color: #fff;
+            }
+            
+            .white {
+                color: #fff;
+            }
+            
+            .black {
+                color: #000;
+            }
 
-            .white { color: #fff; }
-            .black { color: #000; }
+            .italic {
+                font-style: italic;
+            }
 
             .content {
                 width: 200px;
@@ -24,10 +40,6 @@
                 margin-top: -50px;
                 margin-left: -100px;
                 text-align: center;
-            }
-
-            .italic {
-                font-style: italic;
             }
         </style>
 
@@ -74,8 +86,10 @@
                     this.style['font-size'] = size + 'pt';
                 });
 
+                // Hide hello world on click
                 $('.hello').on('click', function()
                 {
+                    // "this" is a reference to the element where the event occured
                     $(this).addClass('black');
                     console.log('*poof*');
                 });
@@ -87,7 +101,14 @@
                 $('.dots .dot').el(3).addClass('white');
                 $('.dots .dot').el(randomInt(0, 9)).addClass('white');
 
+                // Change the style of an element
                 $('.dots').style({'color': '#111', 'font-size': '30pt'});
+
+                // Find the scroll position of the window
+                $(window).on('scroll', function()
+                {
+                    console.log("Window scroll position:", $(this).scroll());
+                });
             });
         </script>
 

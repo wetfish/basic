@@ -13,6 +13,6 @@ public.prototype.style = function(style)
             element.style[property] = style[property];
         });
     });
-        
+    
     return this;
 }
