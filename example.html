@@ -25,7 +25,7 @@
             }
 
             .italic {
-                font-style: italics;
+                font-style: italic;
             }
         </style>
 
@@ -74,6 +74,10 @@
                     $(this).addClass('black');
                     console.log('*poof*');
                 });
+
+                console.log($('div'));
+
+                $('div').find('.hello').addClass('italic');
             });
         </script>
     </head>
