@@ -5,7 +5,7 @@
     // Core functionality
 
     // A constructor for public functions
-    var public = function(selector)
+    var public = wetfish = function(selector)
     {
         if (!(this instanceof public))
         {
