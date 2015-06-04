@@ -58,20 +58,21 @@
                 console.log("Size of .hello:", $('.hello').size());
                 console.log("Size of .world:", $('.world').size());
 
-                // Get the sizes of every matched selector
+                // Get the sizes of every matched element
                 console.log("Sizes of div, p:", $('div, p').size());
 
-                // Add a class
+                // Adding and removing classes
                 setInterval(function()
                 {
-                    $('.world').addClass('black');
+                    if($('.world').hasClass('black'))
+                    {
+                        $('.world').removeClass('black');
+                    }
+                    else
+                    {
+                        $('.world').addClass('black');
+                    }
                 }, 1000);
-
-                // Remove a class
-                setInterval(function()
-                {
-                    $('.world').removeClass('black');
-                }, 2000);
 
                 // Bind an event
                 $('.world').on('mousedown', function(event)
