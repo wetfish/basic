@@ -15,12 +15,12 @@ var public = wetfish = function(selector)
     if(typeof selector == "string")
     {
         // Try matching some elements on the page
-        this.elements = document.querySelectorAll(selector);
+        this.el = this.elements = document.querySelectorAll(selector);
     }
     else
     {
         // Assume an element was passed (like the value of this in an event)
-        this.elements = [selector];
+        this.el = this.elements = [selector];
     }
 
     return this;
