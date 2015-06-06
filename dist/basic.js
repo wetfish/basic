@@ -156,13 +156,18 @@
     // off() - remove an event from all matched elements
     // usage - $('.selector').off('click', callback);
 
-    public.prototype.off = function(event, callback)
+    public.prototype.off = function(events, callback)
     {
-        this.forEach(this.elements, function(index, element)
-        {
-            element.removeEventListener(event, callback);
-        });
+        events = events.split(' ');
 
+        this.forEach(events, function(index, event)
+        {
+            this.forEach(this.elements, function(index, element)
+            {
+                element.removeEventListener(event, callback);
+            });
+        });
+        
         return this;
     }
 
@@ -170,11 +175,16 @@
     // on() - bind an event to all matched elements
     // usage - $('.selector').on('click', function() { console.log('you clicked!'); });
 
-    public.prototype.on = function(event, callback)
+    public.prototype.on = function(events, callback)
     {
-        this.forEach(this.elements, function(index, element)
+        events = events.split(' ');
+
+        this.forEach(events, function(index, event)
         {
-            element.addEventListener(event, callback);
+            this.forEach(this.elements, function(index, element)
+            {
+                element.addEventListener(event, callback);
+            });
         });
 
         return this;

@@ -2,11 +2,16 @@
 // on() - bind an event to all matched elements
 // usage - $('.selector').on('click', function() { console.log('you clicked!'); });
 
-public.prototype.on = function(event, callback)
+public.prototype.on = function(events, callback)
 {
-    this.forEach(this.elements, function(index, element)
+    events = events.split(' ');
+
+    this.forEach(events, function(index, event)
     {
-        element.addEventListener(event, callback);
+        this.forEach(this.elements, function(index, element)
+        {
+            element.addEventListener(event, callback);
+        });
     });
 
     return this;

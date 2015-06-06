@@ -74,8 +74,8 @@
                     }
                 }, 1000);
 
-                // Bind an event
-                $('.world').on('mousedown', function(event)
+                // Bind some events
+                $('.world').on('mousedown mouseup mouseenter mouseleave', function(event)
                 {
                     event.preventDefault();
                     
