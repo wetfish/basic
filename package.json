@@ -1,6 +1,6 @@
 {
   "name": "wetfish-basic",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A tiny, customizable JavaScript UI framework.",
   "main": "dist/basic.js",
   "scripts": {
