@@ -1,8 +1,8 @@
 ////////////////////////////////
-// el() - select something from the list of currently matched elements
-// usage - $('a').el(3).addClass('example');
+// eq() - select something from the list of currently matched elements
+// usage - $('a').eq(3).addClass('example');
 
-public.prototype.el = function(index)
+public.prototype.eq = function(index)
 {
     // If an existing element was found
     if(typeof this.elements[index] != "undefined")

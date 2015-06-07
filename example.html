@@ -104,8 +104,8 @@
                 $('div').find('.hello').addClass('italic');
 
                 // Select specific elements within a matched selector
-                $('.dots .dot').el(3).addClass('white');
-                $('.dots .dot').el(randomInt(0, 9)).addClass('white');
+                $('.dots .dot').eq(3).addClass('white');
+                $('.dots .dot').eq(randomInt(0, 9)).addClass('white');
 
                 // Change the style of an element
                 $('.dots').style({'color': '#111', 'font-size': '30pt'});
