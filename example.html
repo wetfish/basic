@@ -115,6 +115,12 @@
                 {
                     console.log("Window scroll position:", $(this).scroll());
                 });
+
+                // Trigger an event
+                $('.trigger').on('click', function()
+                {
+                    $('.world').trigger('mousedown');
+                });
             });
         </script>
 
@@ -145,6 +151,7 @@
         <div class="content">
             <p class="hello">Hello world!</p>
             <p class="world">*blink*</p>
+            <input class="trigger" type="button" value="Make it grow">
         </div>
     </body>
 </html>
