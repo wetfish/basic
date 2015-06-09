@@ -77,6 +77,18 @@
         return this;
     }
 
+    // Polyfill from MDN for IE support
+    // See: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+    private.CustomEvent = function(event, params)
+    {
+        params = params || { bubbles: false, cancelable: false, detail: undefined };
+        var evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+        return evt;
+    }
+
+    private.CustomEvent.prototype = window.Event.prototype;
+
     ////////////////////////////////
     // eq() - select something from the list of currently matched elements
     // usage - $('a').eq(3).addClass('example');
@@ -190,6 +202,8 @@
         return this;
     }
 
+    // Depends on: private.CustomEvent
+
     ////////////////////////////////
     // ready() - wait for the page to load before firing callback
     // usage - $(document).ready, function() { console.log('Page ready!'); });
@@ -206,7 +220,7 @@
     document.addEventListener('DOMContentLoaded', function()
     {
         // Create a custom event with a nicer name
-        var ready = new CustomEvent('ready');
+        var ready = new private.CustomEvent('ready');
 
         // Trigger it!
         document.dispatchEvent(ready);
@@ -382,6 +396,8 @@
         }
     }
 
+    // Depends on: private.customEvent
+
     ////////////////////////////////
     // trigger() - trigger an event on matched elements
     // usage - $('.some-button').trigger('click');                      // Trigger the click event on .some-button
@@ -423,16 +439,4 @@
             element.dispatchEvent(event);
         });
     }
-
-    // Polyfill from MDN for IE support
-    // See: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
-    private.CustomEvent = function(event, params)
-    {
-        params = params || { bubbles: false, cancelable: false, detail: undefined };
-        var evt = document.createEvent('CustomEvent');
-        evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-        return evt;
-    }
-
-    private.CustomEvent.prototype = window.Event.prototype;
 })();

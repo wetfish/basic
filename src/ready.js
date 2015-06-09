@@ -1,3 +1,5 @@
+// Depends on: private.CustomEvent
+
 ////////////////////////////////
 // ready() - wait for the page to load before firing callback
 // usage - $(document).ready, function() { console.log('Page ready!'); });
@@ -14,7 +16,7 @@ public.prototype.ready = function(callback)
 document.addEventListener('DOMContentLoaded', function()
 {
     // Create a custom event with a nicer name
-    var ready = new CustomEvent('ready');
+    var ready = new private.CustomEvent('ready');
 
     // Trigger it!
     document.dispatchEvent(ready);
