@@ -1,86 +1,10 @@
+// Depends on: private.width and private.height
+
 ////////////////////////////////
 // size() - get the size of a specific element or all matched elements
 // usage - var size = $('.single-selector').size(); // Returns an object containing the element's height and width
 // usage - var size = $('.multi-selector').size(); // Returns an array of objects containing the height and width of all matched elements 
 
-// Private function to determine element height
-private.height = function(element)
-{
-    var height = false;
-
-    // Special cases for things that aren't regular elements
-    if(element == window)
-    {
-        height =
-        {
-            inner: window.innerHeight,
-            outer: window.outerHeight
-        }
-    }
-
-    if(element == document)
-    {
-        height =
-        {
-            inner: document.documentElement.scrollHeight,
-            outer: document.documentElement.offsetHeight
-        }
-    }
-
-    // Otherwise, get the computed style
-    if(!height)
-    {
-        var style = window.getComputedStyle(element);
-        var height =
-        {
-            inner: element.offsetHeight,
-            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-        };
-    }
-    
-    return height;
-}
-
-// Private function to determine element width
-private.width = function(element)
-{
-    var width = false;
-    
-    // Special cases for things that aren't regular elements
-    if(element == window)
-    {
-        width =
-        {
-            inner: window.innerWidth,
-            outer: window.outerWidth
-        }
-    }
-
-    if(element == document)
-    {
-        width =
-        {
-            inner: document.documentElement.scrollWidth,
-            outer: document.documentElement.offsetWidth
-        }
-    }
-
-    // Otherwise, get the computed style
-    if(!width)
-    {
-        var style = window.getComputedStyle(element);
-
-        width =
-        {
-            inner: element.offsetWidth,
-            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-        };
-    }
-    
-    return width;
-}
-
-// Public function which generates size objects
 public.prototype.size = function()
 {
     var output = [];

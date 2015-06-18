@@ -51,6 +51,84 @@
 
     private.CustomEvent.prototype = window.Event.prototype;
 
+    // Private function to determine element height
+    private.height = function(element)
+    {
+        var height = false;
+
+        // Special cases for things that aren't regular elements
+        if(element == window)
+        {
+            height =
+            {
+                inner: window.innerHeight,
+                outer: window.outerHeight
+            }
+        }
+
+        if(element == document)
+        {
+            height =
+            {
+                inner: document.documentElement.scrollHeight,
+                outer: document.documentElement.offsetHeight
+            }
+        }
+
+        // Otherwise, get the computed style
+        if(!height)
+        {
+            var style = window.getComputedStyle(element);
+            var height =
+            {
+                inner: element.offsetHeight,
+                outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+            };
+        }
+        
+        return height;
+    }
+
+
+    // Private function to determine element width
+    private.width = function(element)
+    {
+        var width = false;
+        
+        // Special cases for things that aren't regular elements
+        if(element == window)
+        {
+            width =
+            {
+                inner: window.innerWidth,
+                outer: window.outerWidth
+            }
+        }
+
+        if(element == document)
+        {
+            width =
+            {
+                inner: document.documentElement.scrollWidth,
+                outer: document.documentElement.offsetWidth
+            }
+        }
+
+        // Otherwise, get the computed style
+        if(!width)
+        {
+            var style = window.getComputedStyle(element);
+
+            width =
+            {
+                inner: element.offsetWidth,
+                outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+            };
+        }
+        
+        return width;
+    }
+
     ////////////////////////////////
     // Check how basic should be exported
 
@@ -153,6 +231,33 @@
         });
 
         return match;
+    }
+
+    // Depends on: private.height
+
+    ////////////////////////////////
+    // height() - get the height of a specific element or all matched elements
+    // usage - var height = $('.single-selector').height(); // Returns an object containing the element's inner and outer height
+    // usage - var height = $('.multi-selector').height(); // Returns an array of objects containing the inner and outer height of all matched elements 
+
+    public.prototype.height = function()
+    {
+        var output = [];
+
+        this.forEach(this.elements, function(index, element)
+        {
+            output.push(private.height(element));
+        });
+
+        // If we were only checking the height of one element
+        if(output.length == 1)
+        {
+            // Return only that element's height
+            return output[0];
+        }
+
+        // Otherwise, return an array of heights
+        return output;
     }
 
     ////////////////////////////////
@@ -291,89 +396,13 @@
         return output;
     }
 
+    // Depends on: private.width and private.height
+
     ////////////////////////////////
     // size() - get the size of a specific element or all matched elements
     // usage - var size = $('.single-selector').size(); // Returns an object containing the element's height and width
     // usage - var size = $('.multi-selector').size(); // Returns an array of objects containing the height and width of all matched elements 
 
-    // Private function to determine element height
-    private.height = function(element)
-    {
-        var height = false;
-
-        // Special cases for things that aren't regular elements
-        if(element == window)
-        {
-            height =
-            {
-                inner: window.innerHeight,
-                outer: window.outerHeight
-            }
-        }
-
-        if(element == document)
-        {
-            height =
-            {
-                inner: document.documentElement.scrollHeight,
-                outer: document.documentElement.offsetHeight
-            }
-        }
-
-        // Otherwise, get the computed style
-        if(!height)
-        {
-            var style = window.getComputedStyle(element);
-            var height =
-            {
-                inner: element.offsetHeight,
-                outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-            };
-        }
-        
-        return height;
-    }
-
-    // Private function to determine element width
-    private.width = function(element)
-    {
-        var width = false;
-        
-        // Special cases for things that aren't regular elements
-        if(element == window)
-        {
-            width =
-            {
-                inner: window.innerWidth,
-                outer: window.outerWidth
-            }
-        }
-
-        if(element == document)
-        {
-            width =
-            {
-                inner: document.documentElement.scrollWidth,
-                outer: document.documentElement.offsetWidth
-            }
-        }
-
-        // Otherwise, get the computed style
-        if(!width)
-        {
-            var style = window.getComputedStyle(element);
-
-            width =
-            {
-                inner: element.offsetWidth,
-                outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-            };
-        }
-        
-        return width;
-    }
-
-    // Public function which generates size objects
     public.prototype.size = function()
     {
         var output = [];
@@ -489,5 +518,32 @@
             // Dispatch it!
             element.dispatchEvent(event);
         });
+    }
+
+    // Depends on: private.width
+
+    ////////////////////////////////
+    // width() - get the width of a specific element or all matched elements
+    // usage - var width = $('.single-selector').width(); // Returns an object containing the element's inner and outer width
+    // usage - var width = $('.multi-selector').width(); // Returns an array of objects containing the inner and outer width of all matched elements 
+
+    public.prototype.width = function()
+    {
+        var output = [];
+
+        this.forEach(this.elements, function(index, element)
+        {
+            output.push(private.width(element));
+        });
+
+        // If we were only checking the width of one element
+        if(output.length == 1)
+        {
+            // Return only that element's width
+            return output[0];
+        }
+
+        // Otherwise, return an array of widths
+        return output;
     }
 })();
