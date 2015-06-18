@@ -6,26 +6,77 @@
 // Private function to determine element height
 private.height = function(element)
 {
-    var style = window.getComputedStyle(element);
-    var height =
-    {
-        inner: element.offsetHeight,
-        outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-    };
+    var height = false;
 
+    // Special cases for things that aren't regular elements
+    if(element == window)
+    {
+        height =
+        {
+            inner: window.innerHeight,
+            outer: window.outerHeight
+        }
+    }
+
+    if(element == document)
+    {
+        height =
+        {
+            inner: document.documentElement.scrollHeight,
+            outer: document.documentElement.offsetHeight
+        }
+    }
+
+    // Otherwise, get the computed style
+    if(!height)
+    {
+        var style = window.getComputedStyle(element);
+        var height =
+        {
+            inner: element.offsetHeight,
+            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+        };
+    }
+    
     return height;
 }
 
 // Private function to determine element width
 private.width = function(element)
 {
-    var style = window.getComputedStyle(element);
-    var width =
+    var width = false;
+    
+    // Special cases for things that aren't regular elements
+    if(element == window)
     {
-        inner: element.offsetWidth,
-        outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-    };
+        width =
+        {
+            inner: window.innerWidth,
+            outer: window.outerWidth
+        }
+    }
 
+    if(element == document)
+    {
+        width =
+        {
+            inner: document.documentElement.scrollWidth,
+            outer: document.documentElement.offsetWidth
+        }
+    }
+
+    // Otherwise, get the computed style
+    if(!width)
+    {
+        var style = window.getComputedStyle(element);
+
+        width =
+        {
+            inner: element.offsetWidth,
+            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+        };
+    }
+    
     return width;
 }
 
