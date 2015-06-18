@@ -1,38 +1,31 @@
 // Private function to determine element width
 private.width = function(element)
 {
-    var width = false;
-    
-    // Special cases for things that aren't regular elements
+    // Special case for the window
     if(element == window)
     {
-        width =
+        var width =
         {
             inner: window.innerWidth,
             outer: window.outerWidth
-        }
+        };
+
+        return width;
     }
 
+    // Document should actually reference the documentElement
     if(element == document)
     {
-        width =
-        {
-            inner: document.documentElement.scrollWidth,
-            outer: document.documentElement.offsetWidth
-        }
+        element = document.documentElement;
     }
 
-    // Otherwise, get the computed style
-    if(!width)
+    // Now get the computed style
+    var style = window.getComputedStyle(element);
+    var width =
     {
-        var style = window.getComputedStyle(element);
-
-        width =
-        {
-            inner: element.offsetWidth,
-            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-        };
-    }
+        inner: element.offsetWidth,
+        outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+    };
     
     return width;
 }

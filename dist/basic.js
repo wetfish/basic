@@ -54,38 +54,32 @@
     // Private function to determine element height
     private.height = function(element)
     {
-        var height = false;
-
-        // Special cases for things that aren't regular elements
+        // Special case for the window
         if(element == window)
         {
-            height =
+            var height =
             {
                 inner: window.innerHeight,
                 outer: window.outerHeight
-            }
+            };
+
+            return height;
         }
 
+        // Document should actually reference the documentElement
         if(element == document)
         {
-            height =
-            {
-                inner: document.documentElement.scrollHeight,
-                outer: document.documentElement.offsetHeight
-            }
+            element = document.documentElement;
         }
 
-        // Otherwise, get the computed style
-        if(!height)
+        // Now get the computed style
+        var style = window.getComputedStyle(element);
+        var height =
         {
-            var style = window.getComputedStyle(element);
-            var height =
-            {
-                inner: element.offsetHeight,
-                outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-            };
-        }
-        
+            inner: element.offsetHeight,
+            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+        };
+       
         return height;
     }
 
@@ -93,38 +87,31 @@
     // Private function to determine element width
     private.width = function(element)
     {
-        var width = false;
-        
-        // Special cases for things that aren't regular elements
+        // Special case for the window
         if(element == window)
         {
-            width =
+            var width =
             {
                 inner: window.innerWidth,
                 outer: window.outerWidth
-            }
+            };
+
+            return width;
         }
 
+        // Document should actually reference the documentElement
         if(element == document)
         {
-            width =
-            {
-                inner: document.documentElement.scrollWidth,
-                outer: document.documentElement.offsetWidth
-            }
+            element = document.documentElement;
         }
 
-        // Otherwise, get the computed style
-        if(!width)
+        // Now get the computed style
+        var style = window.getComputedStyle(element);
+        var width =
         {
-            var style = window.getComputedStyle(element);
-
-            width =
-            {
-                inner: element.offsetWidth,
-                outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-            };
-        }
+            inner: element.offsetWidth,
+            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+        };
         
         return width;
     }

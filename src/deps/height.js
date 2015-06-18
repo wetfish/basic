@@ -1,38 +1,32 @@
 // Private function to determine element height
 private.height = function(element)
 {
-    var height = false;
-
-    // Special cases for things that aren't regular elements
+    // Special case for the window
     if(element == window)
     {
-        height =
+        var height =
         {
             inner: window.innerHeight,
             outer: window.outerHeight
-        }
+        };
+
+        return height;
     }
 
+    // Document should actually reference the documentElement
     if(element == document)
     {
-        height =
-        {
-            inner: document.documentElement.scrollHeight,
-            outer: document.documentElement.offsetHeight
-        }
+        element = document.documentElement;
     }
 
-    // Otherwise, get the computed style
-    if(!height)
+    // Now get the computed style
+    var style = window.getComputedStyle(element);
+    var height =
     {
-        var style = window.getComputedStyle(element);
-        var height =
-        {
-            inner: element.offsetHeight,
-            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-        };
-    }
-    
+        inner: element.offsetHeight,
+        outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+    };
+   
     return height;
 }
 
