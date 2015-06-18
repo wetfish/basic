@@ -8,11 +8,12 @@ var watch = require('gulp-watch');
 
 gulp.task('default', function()
 {
-    watch('src/*.js', function ()
+    watch('src/**/*.js', function ()
     {
         var files =
         [
             './src/_basic.js',      // Load the constructor first
+            './src/deps/*.js',      // Followed by dependencies
             './src/*.js',           // Then load everything else
         ];
         
