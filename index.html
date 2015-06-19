@@ -31,6 +31,10 @@
                 font-style: italic;
             }
 
+            .tests {
+                color: #444;
+            }
+
             .content {
                 width: 200px;
                 height: 100px;
@@ -150,6 +154,10 @@
                 {
                     $('.world').trigger('mousedown', {super: true});
                 });
+
+                // Replace some content
+                $('.html').html("<b>Magic~</b>");
+                $('.text').text("<u>Can't hack me!</u>");
             });
         </script>
 
@@ -175,6 +183,11 @@
             <span class="dot">.</span>
             <span class="dot">.</span>
             <span class="dot">.</span>
+        </div>
+
+        <div class="tests">
+            <div class="html"></div>
+            <div class="text"></div>
         </div>
 
         <div class="content">
