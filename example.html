@@ -88,6 +88,12 @@
                     // INCREASE IT!!!
                     size++;
 
+                    // SUPER INCREASE IT!!!
+                    if(event.detail.super)
+                    {
+                        size += 10;
+                    }
+
                     // Set the new size
                     $(this).style({'font-size': size + 'pt'});
                 });
@@ -110,16 +116,24 @@
                 // Change the style of an element
                 $('.dots').style({'color': '#111', 'font-size': '30pt'});
 
+                // Get the position of an element (relative to the page)
+                console.log($('.hello').position());
+
+                // Get the position of an element (relative to the window)
+                console.log($('.hello').position('window'));
+
                 // Find the scroll position of the window
                 $(window).on('scroll', function()
                 {
                     console.log("Window scroll position:", $(this).scroll());
+                    console.log($('.hello').position());
+                    console.log($('.hello').position('window'));
                 });
 
                 // Trigger an event
                 $('.trigger').on('click', function()
                 {
-                    $('.world').trigger('mousedown');
+                    $('.world').trigger('mousedown', {super: true});
                 });
             });
         </script>

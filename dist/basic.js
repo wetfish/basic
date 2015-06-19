@@ -307,7 +307,16 @@
 
         this.forEach(this.elements, function(index, element)
         {
-            var position = element.getBoundingClientRect();
+            var rect = element.getBoundingClientRect();
+
+            // DOM Rects are immutable, so we have to copy the data
+            var position =
+            {
+                top: rect.top,
+                left: rect.left,
+                right: rect.right,
+                bottom: rect.bottom
+            };
 
             if(relative == "page")
             {
