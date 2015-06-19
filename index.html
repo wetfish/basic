@@ -33,6 +33,9 @@
 
             .tests {
                 color: #444;
+                position: absolute;
+                bottom: 1em;
+                left: 1em;
             }
 
             .content {
@@ -158,6 +161,8 @@
                 // Replace some content
                 $('.html').html("<b>Magic~</b>");
                 $('.text').text("<u>Can't hack me!</u>");
+                $('.example').prepend("Nice to meet you.");
+                $('.example').append("See you later!");
             });
         </script>
 
@@ -188,6 +193,9 @@
         <div class="tests">
             <div class="html"></div>
             <div class="text"></div>
+            <div class="example">
+                <div>This is some example content</div>
+            </div>
         </div>
 
         <div class="content">

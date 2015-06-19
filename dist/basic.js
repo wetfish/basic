@@ -155,6 +155,21 @@
     }
 
     ////////////////////////////////
+    // append('string') - add a string to the end of all currently matched elements
+    // usage - $('body').append('The end!');
+
+    public.prototype.append = function(content)
+    {
+        // Loop through current elements
+        this.forEach(this.elements, function(index, element)
+        {
+            element.innerHTML = element.innerHTML + content;
+        });
+
+        return this;
+    }
+
+    ////////////////////////////////
     // each(callback) - loop over the list of currently matched elements, calling the callback for each
     // usage - $('a').each(function(index, element) { console.log(this) };
 
@@ -367,6 +382,21 @@
 
         // Otherwise, return an array of positions
         return output;
+    }
+
+    ////////////////////////////////
+    // prepend('string') - add a string to the beginning of all currently matched elements
+    // usage - $('body').prepend('Dear user,');
+
+    public.prototype.prepend = function(content)
+    {
+        // Loop through current elements
+        this.forEach(this.elements, function(index, element)
+        {
+            element.innerHTML = content + element.innerHTML;
+        });
+
+        return this;
     }
 
     // Depends on: private.CustomEvent
