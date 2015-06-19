@@ -113,6 +113,21 @@
                 $('.dots .dot').eq(3).addClass('white');
                 $('.dots .dot').eq(randomInt(0, 9)).addClass('white');
 
+                // Clear the dots after 1 second
+                setTimeout(function()
+                {
+                    $('.dot').removeClass('white');
+                }, 1000);
+
+                // Loop over all dots and do something else
+                $('.dot').each(function(index, element)
+                {
+                    setTimeout(function()
+                    {
+                        $(element).addClass('white');
+                    }, 1100 + (index * 100));
+                });
+
                 // Change the style of an element
                 $('.dots').style({'color': '#111', 'font-size': '30pt'});
 
