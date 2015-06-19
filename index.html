@@ -158,11 +158,17 @@
                     $('.world').trigger('mousedown', {super: true});
                 });
 
-                // Replace some content
+                // Modify the content of some elements
                 $('.html').html("<b>Magic~</b>");
                 $('.text').text("<u>Can't hack me!</u>");
                 $('.example').prepend("Nice to meet you.");
                 $('.example').append("See you later!");
+
+                // Replace an element entirely
+                $('.replace').replace("<b>Replaced!</b>");
+
+                // Remove an element
+                $('.remove').remove();
             });
         </script>
 
@@ -196,6 +202,8 @@
             <div class="example">
                 <div>This is some example content</div>
             </div>
+            <div class="replace"></div>
+            <div class="remove"></div>
         </div>
 
         <div class="content">

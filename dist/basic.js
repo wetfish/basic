@@ -424,6 +424,21 @@
     })
 
     ////////////////////////////////
+    // remove() - remove all currently matched elements
+    // usage - $('p').remove();
+
+    public.prototype.remove = function()
+    {
+        // Loop through current elements
+        this.forEach(this.elements, function(index, element)
+        {
+            element.parentNode.removeChild(element);
+        });
+
+        return this;
+    }
+
+    ////////////////////////////////
     // removeClass() - remove a class from all matched nodes
     // usage - $('.selector').removeClass('example');
 
@@ -440,6 +455,21 @@
                 classes.splice(index, 1);
                 element.className = classes.join(' ');
             }
+        });
+
+        return this;
+    }
+
+    ////////////////////////////////
+    // replace('string') - replace all currently matched elements with the string
+    // usage - $('.start').replace("<div class='stop'>Replaced!</div>');
+
+    public.prototype.replace = function(content)
+    {
+        // Loop through current elements
+        this.forEach(this.elements, function(index, element)
+        {
+            element.outerHTML = content;
         });
 
         return this;
