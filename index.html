@@ -193,6 +193,15 @@
 
                 // Get the value of an input
                 console.log($('.get').value());
+
+                // Check if an element is checked
+                if($('.uncheck').prop('checked'))
+                {
+                    console.log("It's checked!");
+
+                    // Uncheck it
+                    $('.uncheck').prop('checked', false);
+                }
             });
         </script>
 
@@ -231,6 +240,7 @@
 
             <div class="attr" remove="me"></div>
             <input class="check" type="checkbox">
+            <input class="uncheck" type="checkbox" checked>
             <div class="data" data-test="this is some data!"></div>
 
             <input class="get" value="This is a value!">
