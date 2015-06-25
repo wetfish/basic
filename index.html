@@ -169,6 +169,14 @@
 
                 // Remove an element
                 $('.remove').remove();
+
+                // Modify some attributes
+                $('.attr').attr('sweet', 'bro');
+                $('.attr').attr('remove', false);
+                $('.check').attr('checked', true);
+
+                // Get the value of an attribute
+                console.log($('.attr').attr('sweet'));
             });
         </script>
 
@@ -204,6 +212,9 @@
             </div>
             <div class="replace"></div>
             <div class="remove"></div>
+
+            <div class="attr" remove="me"></div>
+            <input class="check" type="checkbox">
         </div>
 
         <div class="content">
