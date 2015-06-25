@@ -177,6 +177,16 @@
 
                 // Get the value of an attribute
                 console.log($('.attr').attr('sweet'));
+
+                // Modify some data attributes
+                $('.data').data('sweet', 'bro');
+                $('.data').data('awesome', 'thanks');
+
+                // Get the value of a data attribute
+                console.log($('.data').data('test'));
+
+                // Let's look at the whole dataset
+                console.log($('.data').el[0].dataset);
             });
         </script>
 
@@ -215,6 +225,7 @@
 
             <div class="attr" remove="me"></div>
             <input class="check" type="checkbox">
+            <div class="data" data-test="this is some data!"></div>
         </div>
 
         <div class="content">
