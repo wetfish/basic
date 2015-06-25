@@ -187,6 +187,12 @@
 
                 // Let's look at the whole dataset
                 console.log($('.data').el[0].dataset);
+
+                // Set the value of an input
+                $('.set').value('This is also a value!');
+
+                // Get the value of an input
+                console.log($('.get').value());
             });
         </script>
 
@@ -226,6 +232,9 @@
             <div class="attr" remove="me"></div>
             <input class="check" type="checkbox">
             <div class="data" data-test="this is some data!"></div>
+
+            <input class="get" value="This is a value!">
+            <input class="set" value="">
         </div>
 
         <div class="content">
