@@ -202,6 +202,9 @@
                     // Uncheck it
                     $('.uncheck').prop('checked', false);
                 }
+
+                $('.transform').transform('rotate', '30deg');
+                $('.transform').transform('translate', '150px', '-150px');
             });
         </script>
 
@@ -245,6 +248,8 @@
 
             <input class="get" value="This is a value!">
             <input class="set" value="">
+
+            <div class="transform">I'm transforming!!!</div>
         </div>
 
         <div class="content">
