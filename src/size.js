@@ -1,4 +1,4 @@
-// Depends on: private.width and private.height
+// Depends on: width, height
 
 ////////////////////////////////
 // size() - get the size of a specific element or all matched elements

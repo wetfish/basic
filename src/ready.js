@@ -1,4 +1,4 @@
-// Depends on: private.CustomEvent
+// Depends on: customEvent
 
 ////////////////////////////////
 // ready() - wait for the page to load before firing callback

@@ -1,4 +1,4 @@
-// Depends on: private.height
+// Depends on: height
 
 ////////////////////////////////
 // height() - get the height of a specific element or all matched elements

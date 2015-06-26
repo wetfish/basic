@@ -1,4 +1,4 @@
-// Depends on: private.customEvent
+// Depends on: customEvent
 
 ////////////////////////////////
 // trigger() - trigger an event on matched elements

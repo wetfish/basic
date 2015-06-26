@@ -1,4 +1,4 @@
-// Depends on: private.width
+// Depends on: width
 
 ////////////////////////////////
 // width() - get the width of a specific element or all matched elements
