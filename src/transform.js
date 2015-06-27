@@ -65,6 +65,7 @@ private.transform =
 
         // Update the element
         element.style['transform'] = style.join(" ");
+        element.style['-webkit-transform'] = style.join(" ");
     }
 }
 
