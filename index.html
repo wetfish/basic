@@ -158,11 +158,18 @@
                     $('.world').trigger('mousedown', {super: true});
                 });
 
-                // Modify the content of some elements
+                // Modify the content of some elements using strings
                 $('.html').html("<b>Magic~</b>");
                 $('.text').text("<u>Can't hack me!</u>");
                 $('.example').prepend("Nice to meet you.");
                 $('.example').append("See you later!");
+
+                // Modify the content of elements using other elements
+                var generated = document.createElement('p');
+                $(generated).text('This is a generated element!');
+                $(generated).style({'font-size': '5pt'});
+                $('.example').prepend(generated);
+                $('.example').append(generated);
 
                 // Replace an element entirely
                 $('.replace').replace("<b>Replaced!</b>");

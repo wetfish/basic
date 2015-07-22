@@ -7,7 +7,14 @@ public.prototype.replace = function(content)
     // Loop through current elements
     this.forEach(this.elements, function(index, element)
     {
-        element.outerHTML = content;
+        if(typeof content == "string")
+        {
+            element.outerHTML = content;
+        }
+        else
+        {
+            element.outerHTML = content.outerHTML;
+        }
     });
 
     return this;

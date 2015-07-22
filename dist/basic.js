@@ -173,7 +173,14 @@
         // Loop through current elements
         this.forEach(this.elements, function(index, element)
         {
-            element.innerHTML = element.innerHTML + content;
+            if(typeof content == "string")
+            {
+                element.innerHTML = element.innerHTML + content;
+            }
+            else
+            {
+                element.appendChild(content.cloneNode(true));
+            }
         });
 
         return this;
@@ -399,7 +406,14 @@
         // Loop through current elements
         this.forEach(this.elements, function(index, element)
         {
-            element.innerHTML = content;
+            if(typeof content == "string")
+            {
+                element.innerHTML = content;
+            }
+            else
+            {
+                element.innerHTML = content.outerHTML;
+            }
         });
 
         return this;
@@ -506,7 +520,14 @@
         // Loop through current elements
         this.forEach(this.elements, function(index, element)
         {
-            element.innerHTML = content + element.innerHTML;
+            if(typeof content == "string")
+            {
+                element.innerHTML = content + element.innerHTML;
+            }
+            else
+            {
+                element.insertBefore(content.cloneNode(true), element.firstChild);
+            }
         });
 
         return this;
@@ -621,7 +642,14 @@
         // Loop through current elements
         this.forEach(this.elements, function(index, element)
         {
-            element.outerHTML = content;
+            if(typeof content == "string")
+            {
+                element.outerHTML = content;
+            }
+            else
+            {
+                element.outerHTML = content.outerHTML;
+            }
         });
 
         return this;

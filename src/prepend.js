@@ -7,7 +7,14 @@ public.prototype.prepend = function(content)
     // Loop through current elements
     this.forEach(this.elements, function(index, element)
     {
-        element.innerHTML = content + element.innerHTML;
+        if(typeof content == "string")
+        {
+            element.innerHTML = content + element.innerHTML;
+        }
+        else
+        {
+            element.insertBefore(content.cloneNode(true), element.firstChild);
+        }
     });
 
     return this;
