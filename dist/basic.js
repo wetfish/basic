@@ -428,12 +428,54 @@
         return public;
     }
 
+    // Depends on: ./off.js
+
+    ////////////////////////////////
+    // off() - remove an event that is only fired when a child selector is matched
+    // usage - $('.selector').off('click', '.selector', callback);
+
+    private.eventCallbacks = [];
+    private.eventFunctions = [];
+
+    private.offSelector = function(events, selector, callback)
+    {
+        events = events.split(' ');
+
+        // Look for the index of this callback
+        var functionIndex = private.eventCallbacks.indexOf(callback);
+
+        // If the function is found
+        if(functionIndex > -1)
+        {
+            this.forEach(events, function(index, event)
+            {
+                this.forEach(this.elements, function(index, element)
+                {
+                    element.removeEventListener(event, private.eventFunctions[functionIndex]);
+                });
+            });
+
+            // Remove functions from arrays
+            delete private.eventCallbacks[functionIndex];
+            delete private.eventFunctions[functionIndex];
+        }
+        
+        return this;
+    }
+
     ////////////////////////////////
     // off() - remove an event from all matched elements
     // usage - $('.selector').off('click', callback);
 
     public.prototype.off = function(events, callback)
     {
+        // If more than two arguments are passed, handle this event using offSelector
+        if(arguments.length > 2 && private.offSelector !== undefined)
+        {
+            console.log('calling off?');
+            return private.offSelector.apply(this, arguments);
+        }
+        
         events = events.split(' ');
 
         this.forEach(events, function(index, event)
@@ -453,28 +495,37 @@
     // on() - bind an event that is only fired when a child selector is matched
     // usage - $('body').on('click', '.selector' function() { console.log('you clicked!'); });
 
+    private.eventCallbacks = [];
+    private.eventFunctions = [];
+
     private.onSelector = function(events, selector, callback)
     {
         events = events.split(' ');
+
+        private.eventCallbacks.push(callback);
+        var functionIndex = private.eventFunctions.push(function(event)
+        {
+            var children = document.querySelectorAll(selector);
+
+            for(var i = 0, l = children.length; i < l; i++)
+            {
+                var child = children[i];
+
+                if(event.target == child)
+                {
+                    callback(event);
+                }
+            }
+        });
+
+        // Subtract 1 because push returns the array length
+        functionIndex--;
 
         this.forEach(events, function(index, event)
         {
             this.forEach(this.elements, function(index, element)
             {
-                element.addEventListener(event, function(e)
-                {
-                    var children = document.querySelectorAll(selector);
-
-                    for(var i = 0, l = children.length; i < l; i++)
-                    {
-                        var child = children[i];
-
-                        if(e.target == child)
-                        {
-                            callback(e);
-                        }
-                    }
-                });
+                element.addEventListener(event, private.eventFunctions[functionIndex]);
             });
         });
 

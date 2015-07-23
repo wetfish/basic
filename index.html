@@ -131,7 +131,6 @@
                 {
                     setTimeout(function()
                     {
-                        console.log(element);
                         $(element).addClass('white');
                     }, 1100 + (index * 100));
                 });
@@ -219,6 +218,12 @@
 
                 // Bind an event that only fires when a child selector is matched
                 $('body').on('click', '.dot', addDot);
+
+                // Stop adding dots if you click on hello world
+                $('body').on('click', '.hello', function()
+                {
+                    $('body').off('click', '.dot', addDot);
+                });
 
                 // Apply some CSS transformations
                 $('.transform').transform('rotate', '30deg');
