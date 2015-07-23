@@ -1,4 +1,4 @@
-// Depends on: height
+// Depends on: ./deps/height.js
 
 ////////////////////////////////
 // height() - get the height of a specific element or all matched elements

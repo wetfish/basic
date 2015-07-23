@@ -1,4 +1,4 @@
-// Depends on: customEvent
+// Depends on: ./deps/customEvent.js
 
 ////////////////////////////////
 // trigger() - trigger an event on matched elements

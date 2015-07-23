@@ -1,4 +1,4 @@
-// Depends on: width, height
+// Depends on: ./deps/width.js, ./deps/height.js
 
 ////////////////////////////////
 // size() - get the size of a specific element or all matched elements

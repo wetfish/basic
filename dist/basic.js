@@ -399,7 +399,7 @@
         return match;
     }
 
-    // Depends on: height
+    // Depends on: ./deps/height.js
 
     ////////////////////////////////
     // height() - get the height of a specific element or all matched elements
@@ -721,7 +721,7 @@
         return this;
     }
 
-    // Depends on: customEvent
+    // Depends on: ./deps/customEvent.js
 
     ////////////////////////////////
     // ready() - wait for the page to load before firing callback
@@ -847,7 +847,7 @@
         return output;
     }
 
-    // Depends on: width, height
+    // Depends on: ./deps/width.js, ./deps/height.js
 
     ////////////////////////////////
     // size() - get the size of a specific element or all matched elements
@@ -943,7 +943,7 @@
         return this;
     }
 
-    // Depends on: isArray
+    // Depends on: ./deps/isArray.js
 
     ////////////////////////////////
     // transform() - convenience function for handling CSS transforms
@@ -1030,7 +1030,7 @@
         return this;
     }
 
-    // Depends on: customEvent
+    // Depends on: ./deps/customEvent.js
 
     ////////////////////////////////
     // trigger() - trigger an event on matched elements
@@ -1113,7 +1113,7 @@
         return this;
     }
 
-    // Depends on: width
+    // Depends on: ./deps/width.js
 
     ////////////////////////////////
     // width() - get the width of a specific element or all matched elements

@@ -1,4 +1,4 @@
-// Depends on: isArray
+// Depends on: ./deps/isArray.js
 
 ////////////////////////////////
 // transform() - convenience function for handling CSS transforms

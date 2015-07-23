@@ -1,4 +1,4 @@
-// Depends on: width
+// Depends on: ./deps/width.js
 
 ////////////////////////////////
 // width() - get the width of a specific element or all matched elements

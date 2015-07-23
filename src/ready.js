@@ -1,4 +1,4 @@
-// Depends on: customEvent
+// Depends on: ./deps/customEvent.js
 
 ////////////////////////////////
 // ready() - wait for the page to load before firing callback
