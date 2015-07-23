@@ -212,8 +212,12 @@
 
                 function addDot()
                 {
-                    // Add a dot
-                    $('.dots').append("<span class='white dot'>.</span> ");
+                    // Clone a dot
+                    var dot = $('.dot').clone()[0];
+                    
+                    // Add it to the list of dots
+                    $('.dots').append(dot);
+                    $('.dots').append(' ');
                 }
 
                 // Bind an event that only fires when a child selector is matched
