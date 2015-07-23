@@ -131,6 +131,7 @@
                 {
                     setTimeout(function()
                     {
+                        console.log(element);
                         $(element).addClass('white');
                     }, 1100 + (index * 100));
                 });
@@ -209,6 +210,15 @@
                     // Uncheck it
                     $('.uncheck').prop('checked', false);
                 }
+
+                function addDot()
+                {
+                    // Add a dot
+                    $('.dots').append("<span class='white dot'>.</span> ");
+                }
+
+                // Bind an event that only fires when a child selector is matched
+                $('body').on('click', '.dot', addDot);
 
                 // Apply some CSS transformations
                 $('.transform').transform('rotate', '30deg');
