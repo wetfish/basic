@@ -218,10 +218,13 @@
                     // Add it to the list of dots
                     $('.dots').append(dot);
                     $('.dots').append(' ');
+
+                    console.log($('.dot').length);
                 }
 
                 // Bind an event that only fires when a child selector is matched
                 $('body').on('click', '.dot', addDot);
+
 
                 // Stop adding dots if you click on hello world
                 $('body').on('click', '.hello', function()

@@ -24,6 +24,7 @@
             this.el = this.elements = [selector];
         }
 
+        this.length = this.el.length;
         return this;
     }
 

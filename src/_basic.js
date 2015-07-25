@@ -23,6 +23,7 @@ var public = wetfish = function(selector)
         this.el = this.elements = [selector];
     }
 
+    this.length = this.el.length;
     return this;
 }
 
