@@ -225,10 +225,13 @@
                 // Bind an event that only fires when a child selector is matched
                 $('body').on('click', '.dot', addDot);
 
-
                 // Stop adding dots if you click on hello world
                 $('body').on('click', '.hello', function()
                 {
+                    if(!$(this).hasClass('black magic'))
+                    {
+                        $(this).addClass('magic');
+                    }
                     $('body').off('click', '.dot', addDot);
                 });
 
