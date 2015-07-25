@@ -572,7 +572,7 @@
 
                 if(event.target == child)
                 {
-                    callback(event);
+                    callback.call(event.target, event);
                 }
             }
         });

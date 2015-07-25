@@ -22,7 +22,7 @@ private.onSelector = function(events, selector, callback)
 
             if(event.target == child)
             {
-                callback(event);
+                callback.call(event.target, event);
             }
         }
     });
