@@ -1,5 +1,5 @@
 // Private function to determine element width
-private.width = function(element)
+private.width = function(element, mode)
 {
     // Special case for the window
     if(element == window)
@@ -9,23 +9,28 @@ private.width = function(element)
             inner: window.innerWidth,
             outer: window.outerWidth
         };
+    }
+    else
+    {
+        // Document should actually reference the documentElement
+        if(element == document)
+        {
+            element = document.documentElement;
+        }
 
-        return width;
+        // Now get the computed style
+        var style = window.getComputedStyle(element);
+        var width =
+        {
+            inner: element.offsetWidth,
+            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+        };
     }
 
-    // Document should actually reference the documentElement
-    if(element == document)
-    {
-        element = document.documentElement;
-    }
+    // If a valid mode was passed, return that property
+    if(width[mode] !== undefined)
+        return width[mode];
 
-    // Now get the computed style
-    var style = window.getComputedStyle(element);
-    var width =
-    {
-        inner: element.offsetWidth,
-        outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-    };
-    
+    // Otherwise return both
     return width;
 }

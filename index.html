@@ -62,11 +62,11 @@
                 console.log("Page loaded!");
                 
                 // Get the size of some elements
-                console.log("Size of .hello:", $('.hello').size());
-                console.log("Size of .world:", $('.world').size());
+                console.log("Size of .hello:", $('.hello').size('inner'));
+                console.log("Size of .world:", $('.world').size('outer'));
 
                 // Get the sizes of every matched element
-                console.log("Sizes of div, p:", $('div, p').size());
+                console.log("Sizes of div, p:", $('div, p').size('both'));
 
                 // Adding and removing classes
                 setInterval(function()

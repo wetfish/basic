@@ -1,5 +1,5 @@
 // Private function to determine element height
-private.height = function(element)
+private.height = function(element, mode)
 {
     // Special case for the window
     if(element == window)
@@ -9,24 +9,29 @@ private.height = function(element)
             inner: window.innerHeight,
             outer: window.outerHeight
         };
+    }
+    else
+    {
+        // Document should actually reference the documentElement
+        if(element == document)
+        {
+            element = document.documentElement;
+        }
 
-        return height;
+        // Now get the computed style
+        var style = window.getComputedStyle(element);
+        var height =
+        {
+            inner: element.offsetHeight,
+            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+        };
     }
 
-    // Document should actually reference the documentElement
-    if(element == document)
-    {
-        element = document.documentElement;
-    }
+    // If a valid mode was passed, return that property
+    if(height[mode] !== undefined)
+        return height[mode];
 
-    // Now get the computed style
-    var style = window.getComputedStyle(element);
-    var height =
-    {
-        inner: element.offsetHeight,
-        outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-    };
-   
+    // Otherwise return both
     return height;
 }
 

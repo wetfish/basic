@@ -53,7 +53,7 @@
     private.CustomEvent.prototype = window.Event.prototype;
 
     // Private function to determine element height
-    private.height = function(element)
+    private.height = function(element, mode)
     {
         // Special case for the window
         if(element == window)
@@ -63,24 +63,29 @@
                 inner: window.innerHeight,
                 outer: window.outerHeight
             };
+        }
+        else
+        {
+            // Document should actually reference the documentElement
+            if(element == document)
+            {
+                element = document.documentElement;
+            }
 
-            return height;
+            // Now get the computed style
+            var style = window.getComputedStyle(element);
+            var height =
+            {
+                inner: element.offsetHeight,
+                outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
+            };
         }
 
-        // Document should actually reference the documentElement
-        if(element == document)
-        {
-            element = document.documentElement;
-        }
+        // If a valid mode was passed, return that property
+        if(height[mode] !== undefined)
+            return height[mode];
 
-        // Now get the computed style
-        var style = window.getComputedStyle(element);
-        var height =
-        {
-            inner: element.offsetHeight,
-            outer: element.offsetHeight + parseInt(style.marginTop) + parseInt(style.marginBottom)
-        };
-       
+        // Otherwise return both
         return height;
     }
 
@@ -96,7 +101,7 @@
     }
 
     // Private function to determine element width
-    private.width = function(element)
+    private.width = function(element, mode)
     {
         // Special case for the window
         if(element == window)
@@ -106,24 +111,29 @@
                 inner: window.innerWidth,
                 outer: window.outerWidth
             };
+        }
+        else
+        {
+            // Document should actually reference the documentElement
+            if(element == document)
+            {
+                element = document.documentElement;
+            }
 
-            return width;
+            // Now get the computed style
+            var style = window.getComputedStyle(element);
+            var width =
+            {
+                inner: element.offsetWidth,
+                outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
+            };
         }
 
-        // Document should actually reference the documentElement
-        if(element == document)
-        {
-            element = document.documentElement;
-        }
+        // If a valid mode was passed, return that property
+        if(width[mode] !== undefined)
+            return width[mode];
 
-        // Now get the computed style
-        var style = window.getComputedStyle(element);
-        var width =
-        {
-            inner: element.offsetWidth,
-            outer: element.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight)
-        };
-        
+        // Otherwise return both
         return width;
     }
 
@@ -432,13 +442,17 @@
     // usage - var height = $('.single-selector').height(); // Returns an object containing the element's inner and outer height
     // usage - var height = $('.multi-selector').height(); // Returns an array of objects containing the inner and outer height of all matched elements 
 
-    public.prototype.height = function()
+    public.prototype.height = function(mode)
     {
+        // Default to inner height
+        if(mode === undefined)
+            mode = 'inner';
+        
         var output = [];
 
         this.forEach(this.elements, function(index, element)
         {
-            output.push(private.height(element));
+            output.push(private.height(element, mode));
         });
 
         // If we were only checking the height of one element
@@ -880,16 +894,20 @@
     // usage - var size = $('.single-selector').size(); // Returns an object containing the element's height and width
     // usage - var size = $('.multi-selector').size(); // Returns an array of objects containing the height and width of all matched elements 
 
-    public.prototype.size = function()
+    public.prototype.size = function(mode)
     {
+        // Default to inner size
+        if(mode === undefined)
+            mode = 'inner';
+        
         var output = [];
 
         this.forEach(this.elements, function(index, element)
         {
             var size =
             {
-                height: private.height(element),
-                width: private.width(element)
+                height: private.height(element, mode),
+                width: private.width(element, mode)
             };
             
             output.push(size);
@@ -1146,13 +1164,17 @@
     // usage - var width = $('.single-selector').width(); // Returns an object containing the element's inner and outer width
     // usage - var width = $('.multi-selector').width(); // Returns an array of objects containing the inner and outer width of all matched elements 
 
-    public.prototype.width = function()
+    public.prototype.width = function(mode)
     {
+        // Default to inner width
+        if(mode === undefined)
+            mode = 'inner';
+
         var output = [];
 
         this.forEach(this.elements, function(index, element)
         {
-            output.push(private.width(element));
+            output.push(private.width(element, mode));
         });
 
         // If we were only checking the width of one element
