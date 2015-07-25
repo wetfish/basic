@@ -2,7 +2,7 @@
 // removeClass() - remove a class from all matched nodes
 // usage - if($('.selector').hasClass('example')) { console.log('wow!'); }
 
-public.prototype.hasClass = function(classes)
+public.prototype.hasClass = function(classes, mode)
 {
     var classes = classes.split(' ');
     var match = false;
@@ -24,10 +24,22 @@ public.prototype.hasClass = function(classes)
             }
         });
 
-        // Make sure we matched all of the requested classes
-        if(Object.keys(matches).length == classes.length)
+        // If this is an inclusive match
+        if(mode == 'or')
         {
-            match = true;
+            if(Object.keys(matches).length)
+            {
+                match = true;
+            }
+        }
+
+        // Otherwise, make sure we matched all of the requested classes
+        else
+        {
+            if(Object.keys(matches).length == classes.length)
+            {
+                match = true;
+            }
         }
     });
 
