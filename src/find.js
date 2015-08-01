@@ -20,5 +20,7 @@ public.prototype.find = function(selector)
         });
     });
 
+    // Update the shorthand elements container
+    this.el = this.elements;
     return this;
 }
