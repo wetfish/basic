@@ -303,7 +303,12 @@
                 if(element.dataset[key] === undefined)
                 {
                     // Check to see if it exists as an attribute (for old versions of IE)
-                    element.dataset[key] = element.getAttribute('data-' + key);
+                    var attr = element.getAttribute('data-' + key);
+                    
+                    if(attr != null)
+                    {
+                        element.dataset[key] = attr;
+                    }
                 }
 
                 output.push(element.dataset[key])
@@ -326,7 +331,7 @@
             return output;
         }
 
-        return this;
+        return false;
     }
 
     ////////////////////////////////
