@@ -248,6 +248,7 @@
 
                 // Get an element's parent
                 console.log($('.hello').parent());
+                console.log($('.child').parents('.parent'));
             });
         </script>
 
@@ -300,6 +301,12 @@
             <p class="hello">Hello world!</p>
             <p class="world">*blink*</p>
             <input class="trigger" type="button" value="Make it grow">
+        </div>
+
+        <div class="parent">
+            <div class="wrap">
+                <div class="child"></div>
+            </div>
         </div>
     </body>
 </html>
