@@ -358,12 +358,12 @@
         // If an existing element was found
         if(typeof this.elements[index] != "undefined")
         {
-            this.elements = [this.elements[index]];
+            this.elements = this.el = [this.elements[index]];
             return this;
         }
 
         // Otherwise unset all matched elements
-        this.elements = [];
+        this.elements = this.el = [];
         return this;
     }
 
