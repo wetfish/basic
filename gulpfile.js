@@ -6,47 +6,67 @@ var minimist = require('minimist');
 var extend = require('util')._extend;
 var watch = require('gulp-watch');
 
-gulp.task('default', function()
+// Helper object for compiling scripts
+var scripts =
 {
-    watch('src/**/*.js', function ()
+    // Function for compiling src scripts into single dist file
+    compile: function(input, output)
     {
-        var files =
-        [
-            './src/_basic.js',      // Load the constructor first
-            './src/deps/*.js',      // Followed by dependencies
-            './src/*.js',           // Then load everything else
-        ];
-        
-        gulp.src(files)
-        .pipe(concat('basic.js'))
+        // When there are no input files defined, use these as the defaults
+        if(!input || !Array.isArray(input))
+        {
+            input =
+            [
+                './src/_basic.js',      // Load the constructor first
+                './src/deps/*.js',      // Followed by dependencies
+                './src/*.js',           // Then load everything else
+            ];
+        }
+
+        // Default output filename
+        if(!output)
+        {
+            output = 'basic.js';
+        }
+
+        gulp.src(input)
+        .pipe(concat(output))
         .pipe(replace(/\n(.)/g, '\n    $1'))        // Make sure everything is indented nicely
         .pipe(insert.prepend('(function()\n{'))     // Prepend singleton opening
         .pipe(insert.append('})();'))               // Append singleton closing
         .pipe(gulp.dest('./dist'));
-    });
-});
+    },
 
-gulp.task('build', function()
-{
-    var defaults = { files: '*' };
-    var options = extend(defaults, minimist(process.argv.slice(2)));
-    var files = options.files.split(',');
-
-    // Loop through all requested files
-    for(var i = 0, l = files.length; i < l; i++)
+    watch: function()
     {
-        // Fill in the file path
-        files[i] = './src/' + files[i].trim() + '.js';
-    }
+        watch('src/**/*.js', function ()
+        {
+            scripts.compile();
+        });
+    },
 
-    // Prepend required files
-    files.unshift('./src/_basic.js', './src/_export.js');
+    build: function()
+    {
+        var defaults = { files: '*' };
+        var options = extend(defaults, minimist(process.argv.slice(2)));
+        var files = options.files.split(',');
 
-    // Generate output with requested files
-    gulp.src(files)
-    .pipe(concat('basic.generated.js'))
-    .pipe(replace(/\n(.)/g, '\n    $1'))        // Make sure everything is indented nicely
-    .pipe(insert.prepend('(function()\n{'))     // Prepend singleton opening
-    .pipe(insert.append('})();'))               // Append singleton closing
-    .pipe(gulp.dest('./dist'));
-});
+        // Loop through all requested files
+        for(var i = 0, l = files.length; i < l; i++)
+        {
+            // Fill in the file path
+            files[i] = './src/' + files[i].trim() + '.js';
+        }
+
+        // Prepend required files
+        files.unshift('./src/_basic.js', './src/_export.js');
+
+        // Generate output with requested files
+        scripts.compile(files, 'basic.generated.js');
+    },
+}
+
+gulp.task('default', ['compile', 'watch']);
+gulp.task('compile', scripts.compile);
+gulp.task('watch', scripts.watch);
+gulp.task('build', scripts.build);
