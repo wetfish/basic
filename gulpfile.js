@@ -5,6 +5,8 @@ var insert = require('gulp-insert');
 var minimist = require('minimist');
 var extend = require('util')._extend;
 var watch = require('gulp-watch');
+var uglify = require('gulp-uglify');
+var rename = require("gulp-rename");
 
 // Helper object for compiling scripts
 var scripts =
@@ -29,11 +31,18 @@ var scripts =
             output = 'basic.js';
         }
 
+        // Generate the source file
         gulp.src(input)
         .pipe(concat(output))
         .pipe(replace(/\n(.)/g, '\n    $1'))        // Make sure everything is indented nicely
         .pipe(insert.prepend('(function()\n{'))     // Prepend singleton opening
         .pipe(insert.append('})();'))               // Append singleton closing
+        .pipe(gulp.dest('./dist'));
+
+        // Now generate a minified version
+        gulp.src('./dist/' + output)
+        .pipe(rename(output.replace(/.js$/, '.min.js')))
+        .pipe(uglify())
         .pipe(gulp.dest('./dist'));
     },
 

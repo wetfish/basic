@@ -26,5 +26,6 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
-# Ignore generated script files
+# Ignore custom generated script files
 basic.generated.js
+basic.generated.min.js
