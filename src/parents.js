@@ -24,9 +24,9 @@ public.prototype.parents = function(selector)
     var elements = [];
     var parents = document.querySelectorAll(selector);
 
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element)
     {
-        this.forEach(parents, function(index, parent)
+        this.forEach(parents, function(parent)
         {
             var matched = private.parent(element, parent);
 

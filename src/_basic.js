@@ -32,7 +32,7 @@ public.prototype.forEach = function(array, callback)
 {
     for(var i = 0, l = array.length; i < l; i++)
     {
-        callback.call(this, i, array[i]);
+        callback.call(this, array[i], i);
     }
 }
 

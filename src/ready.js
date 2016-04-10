@@ -6,7 +6,7 @@
 
 public.prototype.ready = function(callback)
 {
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         element.addEventListener('ready', callback);
     });

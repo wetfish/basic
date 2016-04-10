@@ -73,7 +73,7 @@ public.prototype.transform = function()
 {
     var options = arguments;
     
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         // Add the new transform data
         private.transform.save(element, options);

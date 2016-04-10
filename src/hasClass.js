@@ -8,12 +8,12 @@ public.prototype.hasClass = function(classes, mode)
     var match = false;
 
     // TODO: Break loop when match is found?
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         // Reset matches between each loop
         var matches = {};
 
-        this.forEach(classes, function(index, className)
+        this.forEach(classes, function(className)
         {
             var classNames = element.className.split(' ');
             var index = classNames.indexOf(className);

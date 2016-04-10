@@ -9,11 +9,11 @@ public.prototype.style = function(style)
     // If we're setting an object of styles
     if(typeof style == "object")
     {
-        var keys = Object.keys(style);
+        var properties = Object.keys(style);
 
-        this.forEach(keys, function(key, property)
+        this.forEach(properties, function(property)
         {
-            this.forEach(this.elements, function(index, element)
+            this.forEach(this.elements, function(element, index)
             {
                 element.style[property] = style[property];
             });
@@ -27,7 +27,7 @@ public.prototype.style = function(style)
     {
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             var current = window.getComputedStyle(element);
             output.push(current[style]);

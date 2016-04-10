@@ -6,9 +6,9 @@ public.prototype.index = function()
 {
     var output = [];
 
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element)
     {
-        this.forEach(element.parentNode.children, function(index, child)
+        this.forEach(element.parentNode.children, function(child, index)
         {
             if(element == child)
             {

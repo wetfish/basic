@@ -8,7 +8,7 @@ public.prototype.prop = function(key, value)
     var output = [];
     
     // Loop through current elements
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         // If no value is specified, return the current property of the element
         if(value === undefined)

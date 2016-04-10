@@ -33,7 +33,7 @@
     {
         for(var i = 0, l = array.length; i < l; i++)
         {
-            callback.call(this, i, array[i]);
+            callback.call(this, array[i], i);
         }
     }
 
@@ -164,7 +164,7 @@
 
     public.prototype.addClass = function(className)
     {
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -187,7 +187,7 @@
     public.prototype.append = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             if(typeof content == "string")
             {
@@ -212,7 +212,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // If no value is specified, return the current value of the attribute
             if(value === undefined)
@@ -267,7 +267,7 @@
         
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             output.push(element.cloneNode(deep));
         });
@@ -293,7 +293,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // Make sure the dataset is an object (for old versions of IE)
             if(element.dataset === undefined)
@@ -341,12 +341,12 @@
 
     ////////////////////////////////
     // each(callback) - loop over the list of currently matched elements, calling the callback for each
-    // usage - $('a').each(function(index, element) { console.log(this) };
+    // usage - $('a').each(function(element, index) { console.log(this) };
 
     public.prototype.each = function(callback)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             callback.call(element, index, element);
         });
@@ -383,14 +383,14 @@
         this.elements = [];
 
         // Loop through the original elements
-        this.forEach(elements, function(index, element)
+        this.forEach(elements, function(element, index)
         {
             var children = element.querySelectorAll(selector);
 
             // Loop through any matching children and push them to the list of elements
-            this.forEach(children, function(childIndex, childElement)
+            this.forEach(children, function(child)
             {
-                this.elements.push(childElement);
+                this.elements.push(child);
             });
         });
 
@@ -409,12 +409,12 @@
         var match = false;
 
         // TODO: Break loop when match is found?
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // Reset matches between each loop
             var matches = {};
 
-            this.forEach(classes, function(index, className)
+            this.forEach(classes, function(className)
             {
                 var classNames = element.className.split(' ');
                 var index = classNames.indexOf(className);
@@ -462,7 +462,7 @@
         
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             output.push(private.height(element, mode));
         });
@@ -485,7 +485,7 @@
     public.prototype.html = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             if(typeof content == "string")
             {
@@ -508,9 +508,9 @@
     {
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element)
         {
-            this.forEach(element.parentNode.children, function(index, child)
+            this.forEach(element.parentNode.children, function(child, index)
             {
                 if(element == child)
                 {
@@ -558,9 +558,9 @@
         // If the function is found
         if(functionIndex > -1)
         {
-            this.forEach(events, function(index, event)
+            this.forEach(events, function(event, index)
             {
-                this.forEach(this.elements, function(index, element)
+                this.forEach(this.elements, function(element, index)
                 {
                     element.removeEventListener(event, private.eventFunctions[functionIndex]);
                 });
@@ -588,9 +588,9 @@
         
         events = events.split(' ');
 
-        this.forEach(events, function(index, event)
+        this.forEach(events, function(event, index)
         {
-            this.forEach(this.elements, function(index, element)
+            this.forEach(this.elements, function(element, index)
             {
                 element.removeEventListener(event, callback);
             });
@@ -631,9 +631,9 @@
         // Subtract 1 because push returns the array length
         functionIndex--;
 
-        this.forEach(events, function(index, event)
+        this.forEach(events, function(event, index)
         {
-            this.forEach(this.elements, function(index, element)
+            this.forEach(this.elements, function(element, index)
             {
                 element.addEventListener(event, private.eventFunctions[functionIndex]);
             });
@@ -656,9 +656,9 @@
         
         events = events.split(' ');
 
-        this.forEach(events, function(index, event)
+        this.forEach(events, function(event, index)
         {
-            this.forEach(this.elements, function(index, element)
+            this.forEach(this.elements, function(element, index)
             {
                 element.addEventListener(event, callback);
             });
@@ -675,7 +675,7 @@
     {
         var elements = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             elements[index] = element.parentNode;
         });
@@ -710,9 +710,9 @@
         var elements = [];
         var parents = document.querySelectorAll(selector);
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element)
         {
-            this.forEach(parents, function(index, parent)
+            this.forEach(parents, function(parent)
             {
                 var matched = private.parent(element, parent);
 
@@ -738,7 +738,7 @@
         var output = [];
         relative = relative || 'page';
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             var rect = element.getBoundingClientRect();
 
@@ -779,7 +779,7 @@
     public.prototype.prepend = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             if(typeof content == "string")
             {
@@ -804,7 +804,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // If no value is specified, return the current property of the element
             if(value === undefined)
@@ -841,7 +841,7 @@
 
     public.prototype.ready = function(callback)
     {
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             element.addEventListener('ready', callback);
         });
@@ -864,7 +864,7 @@
     public.prototype.remove = function()
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             element.parentNode.removeChild(element);
         });
@@ -878,7 +878,7 @@
 
     public.prototype.removeClass = function(className)
     {
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -901,7 +901,7 @@
     public.prototype.replace = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             if(typeof content == "string")
             {
@@ -925,7 +925,7 @@
     {
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // The window is a special case that doesn't have scrollTop / scrollLeft properties
             if(element == window)
@@ -974,7 +974,7 @@
         
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             var size =
             {
@@ -1007,11 +1007,11 @@
         // If we're setting an object of styles
         if(typeof style == "object")
         {
-            var keys = Object.keys(style);
+            var properties = Object.keys(style);
 
-            this.forEach(keys, function(key, property)
+            this.forEach(properties, function(property)
             {
-                this.forEach(this.elements, function(index, element)
+                this.forEach(this.elements, function(element, index)
                 {
                     element.style[property] = style[property];
                 });
@@ -1025,7 +1025,7 @@
         {
             var output = [];
 
-            this.forEach(this.elements, function(index, element)
+            this.forEach(this.elements, function(element, index)
             {
                 var current = window.getComputedStyle(element);
                 output.push(current[style]);
@@ -1051,7 +1051,7 @@
     public.prototype.text = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             element.innerHTML = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
         });
@@ -1134,7 +1134,7 @@
     {
         var options = arguments;
         
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // Add the new transform data
             private.transform.save(element, options);
@@ -1183,7 +1183,7 @@
         var event = new private.CustomEvent(event, params);
 
         // Loop through matched elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // Dispatch it!
             element.dispatchEvent(event);
@@ -1200,7 +1200,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             // If no value is specified, return the current value of the input
             if(value === undefined)
@@ -1244,7 +1244,7 @@
 
         var output = [];
 
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             output.push(private.width(element, mode));
         });

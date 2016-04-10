@@ -9,14 +9,14 @@ public.prototype.find = function(selector)
     this.elements = [];
 
     // Loop through the original elements
-    this.forEach(elements, function(index, element)
+    this.forEach(elements, function(element, index)
     {
         var children = element.querySelectorAll(selector);
 
         // Loop through any matching children and push them to the list of elements
-        this.forEach(children, function(childIndex, childElement)
+        this.forEach(children, function(child)
         {
-            this.elements.push(childElement);
+            this.elements.push(child);
         });
     });
 

@@ -13,7 +13,7 @@ public.prototype.width = function(mode)
 
     var output = [];
 
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         output.push(private.width(element, mode));
     });

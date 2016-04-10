@@ -6,7 +6,7 @@ public.prototype.parent = function()
 {
     var elements = [];
 
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         elements[index] = element.parentNode;
     });

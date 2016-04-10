@@ -17,9 +17,9 @@ private.offSelector = function(events, selector, callback)
     // If the function is found
     if(functionIndex > -1)
     {
-        this.forEach(events, function(index, event)
+        this.forEach(events, function(event, index)
         {
-            this.forEach(this.elements, function(index, element)
+            this.forEach(this.elements, function(element, index)
             {
                 element.removeEventListener(event, private.eventFunctions[functionIndex]);
             });

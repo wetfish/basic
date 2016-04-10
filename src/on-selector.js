@@ -30,9 +30,9 @@ private.onSelector = function(events, selector, callback)
     // Subtract 1 because push returns the array length
     functionIndex--;
 
-    this.forEach(events, function(index, event)
+    this.forEach(events, function(event, index)
     {
-        this.forEach(this.elements, function(index, element)
+        this.forEach(this.elements, function(element, index)
         {
             element.addEventListener(event, private.eventFunctions[functionIndex]);
         });

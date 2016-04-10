@@ -5,7 +5,7 @@
 public.prototype.replace = function(content)
 {
     // Loop through current elements
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         if(typeof content == "string")
         {

@@ -8,7 +8,7 @@ public.prototype.attr = function(key, value)
     var output = [];
     
     // Loop through current elements
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         // If no value is specified, return the current value of the attribute
         if(value === undefined)

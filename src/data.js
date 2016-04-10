@@ -8,7 +8,7 @@ public.prototype.data = function(key, value)
     var output = [];
     
     // Loop through current elements
-    this.forEach(this.elements, function(index, element)
+    this.forEach(this.elements, function(element, index)
     {
         // Make sure the dataset is an object (for old versions of IE)
         if(element.dataset === undefined)
