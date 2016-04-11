@@ -39,17 +39,5 @@ public.prototype.data = function(key, value)
         }
     });
 
-    if(output.length)
-    {
-        // If only one element was matched, return that value
-        if(output.length == 1)
-        {
-            return output[0];
-        }
-
-        // Otherwise return an array of matched values
-        return output;
-    }
-
-    return false;
+    return this.returnAllOrOne(output, false);
 }

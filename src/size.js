@@ -24,13 +24,5 @@ public.prototype.size = function(mode)
         output.push(size);
     });
 
-    // If we were only checking the size of one element
-    if(output.length == 1)
-    {
-        // Return only that element's size
-        return output[0];
-    }
-
-    // Otherwise, return an array of sizes
-    return output;
+    return this.returnAllOrOne(output);
 }

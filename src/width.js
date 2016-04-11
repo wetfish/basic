@@ -18,13 +18,5 @@ public.prototype.width = function(mode)
         output.push(private.width(element, mode));
     });
 
-    // If we were only checking the width of one element
-    if(output.length == 1)
-    {
-        // Return only that element's width
-        return output[0];
-    }
-
-    // Otherwise, return an array of widths
-    return output;
+    return this.returnAllOrOne(output);
 }

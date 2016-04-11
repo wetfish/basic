@@ -36,5 +36,26 @@ public.prototype.forEach = function(array, callback)
     }
 }
 
+// Helper function to return either a single element or an array based on the length of the input given
+// Output should be an array
+// Fallback is the default value returned if there is no output
+public.prototype.returnAllOrOne = function(output, fallback)
+{
+    if(output.length)
+    {
+        if(output.length == 1)
+        {
+            return output[0];
+        }
+
+        return output;
+    }
+
+    if(fallback !== undefined)
+    {
+        return fallback;
+    }
+}
+
 // An object literal for private functions
 var private = { };

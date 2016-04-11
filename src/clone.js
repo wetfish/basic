@@ -16,13 +16,5 @@ public.prototype.clone = function(deep)
         output.push(element.cloneNode(deep));
     });
 
-    // If we only one element was cloned
-    if(output.length == 1)
-    {
-        // Return only that element
-        return output[0];
-    }
-
-    // Otherwise, return an array of clones
-    return output;
+    return this.returnAllOrOne(output);
 }

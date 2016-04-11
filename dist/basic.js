@@ -37,6 +37,27 @@
         }
     }
 
+    // Helper function to return either a single element or an array based on the length of the input given
+    // Output should be an array
+    // Fallback is the default value returned if there is no output
+    public.prototype.returnAllOrOne = function(output, fallback)
+    {
+        if(output.length)
+        {
+            if(output.length == 1)
+            {
+                return output[0];
+            }
+
+            return output;
+        }
+
+        if(fallback !== undefined)
+        {
+            return fallback;
+        }
+    }
+
     // An object literal for private functions
     var private = { };
 
@@ -239,19 +260,7 @@
             }
         });
 
-        if(output.length)
-        {
-            // If only one element was matched, return that value
-            if(output.length == 1)
-            {
-                return output[0];
-            }
-
-            // Otherwise return an array of matched values
-            return output;
-        }
-
-        return this;
+        return this.returnAllOrOne(output, this);
     }
 
     ////////////////////////////////
@@ -272,15 +281,7 @@
             output.push(element.cloneNode(deep));
         });
 
-        // If we only one element was cloned
-        if(output.length == 1)
-        {
-            // Return only that element
-            return output[0];
-        }
-
-        // Otherwise, return an array of clones
-        return output;
+        return this.returnAllOrOne(output);
     }
 
     ////////////////////////////////
@@ -324,19 +325,7 @@
             }
         });
 
-        if(output.length)
-        {
-            // If only one element was matched, return that value
-            if(output.length == 1)
-            {
-                return output[0];
-            }
-
-            // Otherwise return an array of matched values
-            return output;
-        }
-
-        return false;
+        return this.returnAllOrOne(output, false);
     }
 
     ////////////////////////////////
@@ -467,15 +456,7 @@
             output.push(private.height(element, mode));
         });
 
-        // If we were only checking the height of one element
-        if(output.length == 1)
-        {
-            // Return only that element's height
-            return output[0];
-        }
-
-        // Otherwise, return an array of heights
-        return output;
+        return this.returnAllOrOne(output);
     }
 
     ////////////////////////////////
@@ -519,15 +500,7 @@
             });
         });
 
-        // If we only one element was matched
-        if(output.length == 1)
-        {
-            // Return only that element's index
-            return output[0];
-        }
-
-        // Otherwise, return an array of indexes
-        return output;
+        return this.returnAllOrOne(output);
     }
 
     ////////////////////////////////
@@ -761,15 +734,7 @@
             output.push(position);
         });
 
-        // If we were only checking the position of one element
-        if(output.length == 1)
-        {
-            // Return only that element's position
-            return output[0];
-        }
-
-        // Otherwise, return an array of positions
-        return output;
+        return this.returnAllOrOne(output);
     }
 
     ////////////////////////////////
@@ -818,19 +783,7 @@
             }
         });
 
-        if(output.length)
-        {
-            // If only one element was matched, return that value
-            if(output.length == 1)
-            {
-                return output[0];
-            }
-
-            // Otherwise return an array of matched values
-            return output;
-        }
-
-        return this;
+        return this.returnAllOrOne(output, this);
     }
 
     // Depends on: ./deps/customEvent.js
@@ -948,15 +901,7 @@
             output.push(scroll);
         });
 
-        // If we were only checking the position of one element
-        if(output.length == 1)
-        {
-            // Return only that element's position
-            return output[0];
-        }
-
-        // Otherwise, return an array of positions
-        return output;
+        return this.returnAllOrOne(output);
     }
 
     // Depends on: ./deps/width.js, ./deps/height.js
@@ -985,15 +930,7 @@
             output.push(size);
         });
 
-        // If we were only checking the size of one element
-        if(output.length == 1)
-        {
-            // Return only that element's size
-            return output[0];
-        }
-
-        // Otherwise, return an array of sizes
-        return output;
+        return this.returnAllOrOne(output);
     }
 
     ////////////////////////////////
@@ -1031,15 +968,7 @@
                 output.push(current[style]);
             });
 
-            // If we were only checking the style of one element
-            if(output.length == 1)
-            {
-                // Return only that element's style
-                return output[0];
-            }
-
-            // Otherwise, return an array of styles
-            return output;
+            return this.returnAllOrOne(output);
         }
     }
 
@@ -1214,19 +1143,7 @@
             }
         });
 
-        if(output.length)
-        {
-            // If only one element was matched, return that value
-            if(output.length == 1)
-            {
-                return output[0];
-            }
-
-            // Otherwise return an array of matched values
-            return output;
-        }
-
-        return this;
+        return this.returnAllOrOne(output, this);
     }
 
     // Depends on: ./deps/width.js
@@ -1249,14 +1166,6 @@
             output.push(private.width(element, mode));
         });
 
-        // If we were only checking the width of one element
-        if(output.length == 1)
-        {
-            // Return only that element's width
-            return output[0];
-        }
-
-        // Otherwise, return an array of widths
-        return output;
+        return this.returnAllOrOne(output);
     }
 })();

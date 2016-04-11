@@ -17,13 +17,5 @@ public.prototype.index = function()
         });
     });
 
-    // If we only one element was matched
-    if(output.length == 1)
-    {
-        // Return only that element's index
-        return output[0];
-    }
-
-    // Otherwise, return an array of indexes
-    return output;
+    return this.returnAllOrOne(output);
 }

@@ -30,13 +30,5 @@ public.prototype.scroll = function()
         output.push(scroll);
     });
 
-    // If we were only checking the position of one element
-    if(output.length == 1)
-    {
-        // Return only that element's position
-        return output[0];
-    }
-
-    // Otherwise, return an array of positions
-    return output;
+    return this.returnAllOrOne(output);
 }

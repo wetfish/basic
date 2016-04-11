@@ -18,13 +18,5 @@ public.prototype.height = function(mode)
         output.push(private.height(element, mode));
     });
 
-    // If we were only checking the height of one element
-    if(output.length == 1)
-    {
-        // Return only that element's height
-        return output[0];
-    }
-
-    // Otherwise, return an array of heights
-    return output;
+    return this.returnAllOrOne(output);
 }

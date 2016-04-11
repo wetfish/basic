@@ -33,14 +33,6 @@ public.prototype.style = function(style)
             output.push(current[style]);
         });
 
-        // If we were only checking the style of one element
-        if(output.length == 1)
-        {
-            // Return only that element's style
-            return output[0];
-        }
-
-        // Otherwise, return an array of styles
-        return output;
+        return this.returnAllOrOne(output);
     }
 }
