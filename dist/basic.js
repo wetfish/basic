@@ -185,7 +185,7 @@
 
     public.prototype.addClass = function(className)
     {
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -208,7 +208,7 @@
     public.prototype.append = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             if(typeof content == "string")
             {
@@ -233,7 +233,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // If no value is specified, return the current value of the attribute
             if(value === undefined)
@@ -276,7 +276,7 @@
         
         var output = [];
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             output.push(element.cloneNode(deep));
         });
@@ -294,7 +294,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // Make sure the dataset is an object (for old versions of IE)
             if(element.dataset === undefined)
@@ -372,7 +372,7 @@
         this.elements = [];
 
         // Loop through the original elements
-        this.forEach(elements, function(element, index)
+        this.forEach(elements, function(element)
         {
             var children = element.querySelectorAll(selector);
 
@@ -398,7 +398,7 @@
         var match = false;
 
         // TODO: Break loop when match is found?
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // Reset matches between each loop
             var matches = {};
@@ -451,7 +451,7 @@
         
         var output = [];
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             output.push(private.height(element, mode));
         });
@@ -466,7 +466,7 @@
     public.prototype.html = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             if(typeof content == "string")
             {
@@ -531,9 +531,9 @@
         // If the function is found
         if(functionIndex > -1)
         {
-            this.forEach(events, function(event, index)
+            this.forEach(events, function(event)
             {
-                this.forEach(this.elements, function(element, index)
+                this.forEach(this.elements, function(element)
                 {
                     element.removeEventListener(event, private.eventFunctions[functionIndex]);
                 });
@@ -561,9 +561,9 @@
         
         events = events.split(' ');
 
-        this.forEach(events, function(event, index)
+        this.forEach(events, function(event)
         {
-            this.forEach(this.elements, function(element, index)
+            this.forEach(this.elements, function(element)
             {
                 element.removeEventListener(event, callback);
             });
@@ -604,9 +604,9 @@
         // Subtract 1 because push returns the array length
         functionIndex--;
 
-        this.forEach(events, function(event, index)
+        this.forEach(events, function(event)
         {
-            this.forEach(this.elements, function(element, index)
+            this.forEach(this.elements, function(element)
             {
                 element.addEventListener(event, private.eventFunctions[functionIndex]);
             });
@@ -629,9 +629,9 @@
         
         events = events.split(' ');
 
-        this.forEach(events, function(event, index)
+        this.forEach(events, function(event)
         {
-            this.forEach(this.elements, function(element, index)
+            this.forEach(this.elements, function(element)
             {
                 element.addEventListener(event, callback);
             });
@@ -711,7 +711,7 @@
         var output = [];
         relative = relative || 'page';
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             var rect = element.getBoundingClientRect();
 
@@ -744,7 +744,7 @@
     public.prototype.prepend = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             if(typeof content == "string")
             {
@@ -769,7 +769,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // If no value is specified, return the current property of the element
             if(value === undefined)
@@ -794,7 +794,7 @@
 
     public.prototype.ready = function(callback)
     {
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             element.addEventListener('ready', callback);
         });
@@ -817,7 +817,7 @@
     public.prototype.remove = function()
     {
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             element.parentNode.removeChild(element);
         });
@@ -831,7 +831,7 @@
 
     public.prototype.removeClass = function(className)
     {
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             var classes = element.className.split(' ');
             var index = classes.indexOf(className);
@@ -854,7 +854,7 @@
     public.prototype.replace = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             if(typeof content == "string")
             {
@@ -878,7 +878,7 @@
     {
         var output = [];
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // The window is a special case that doesn't have scrollTop / scrollLeft properties
             if(element == window)
@@ -919,7 +919,7 @@
         
         var output = [];
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             var size =
             {
@@ -948,7 +948,7 @@
 
             this.forEach(properties, function(property)
             {
-                this.forEach(this.elements, function(element, index)
+                this.forEach(this.elements, function(element)
                 {
                     element.style[property] = style[property];
                 });
@@ -962,7 +962,7 @@
         {
             var output = [];
 
-            this.forEach(this.elements, function(element, index)
+            this.forEach(this.elements, function(element)
             {
                 var current = window.getComputedStyle(element);
                 output.push(current[style]);
@@ -980,7 +980,7 @@
     public.prototype.text = function(content)
     {
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             element.innerHTML = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
         });
@@ -1063,7 +1063,7 @@
     {
         var options = arguments;
         
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // Add the new transform data
             private.transform.save(element, options);
@@ -1112,7 +1112,7 @@
         var event = new private.CustomEvent(event, params);
 
         // Loop through matched elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // Dispatch it!
             element.dispatchEvent(event);
@@ -1129,7 +1129,7 @@
         var output = [];
         
         // Loop through current elements
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             // If no value is specified, return the current value of the input
             if(value === undefined)
@@ -1161,7 +1161,7 @@
 
         var output = [];
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             output.push(private.width(element, mode));
         });

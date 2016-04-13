@@ -12,9 +12,9 @@ public.prototype.off = function(events, callback)
     
     events = events.split(' ');
 
-    this.forEach(events, function(event, index)
+    this.forEach(events, function(event)
     {
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             element.removeEventListener(event, callback);
         });

@@ -9,7 +9,7 @@ public.prototype.find = function(selector)
     this.elements = [];
 
     // Loop through the original elements
-    this.forEach(elements, function(element, index)
+    this.forEach(elements, function(element)
     {
         var children = element.querySelectorAll(selector);
 

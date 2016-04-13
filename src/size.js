@@ -13,7 +13,7 @@ public.prototype.size = function(mode)
     
     var output = [];
 
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         var size =
         {

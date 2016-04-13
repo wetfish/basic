@@ -5,7 +5,7 @@
 public.prototype.remove = function()
 {
     // Loop through current elements
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         element.parentNode.removeChild(element);
     });

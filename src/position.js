@@ -9,7 +9,7 @@ public.prototype.position = function(relative)
     var output = [];
     relative = relative || 'page';
 
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         var rect = element.getBoundingClientRect();
 

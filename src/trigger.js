@@ -35,7 +35,7 @@ public.prototype.trigger = function(event, data)
     var event = new private.CustomEvent(event, params);
 
     // Loop through matched elements
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         // Dispatch it!
         element.dispatchEvent(event);

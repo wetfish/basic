@@ -7,7 +7,7 @@ public.prototype.scroll = function()
 {
     var output = [];
 
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         // The window is a special case that doesn't have scrollTop / scrollLeft properties
         if(element == window)

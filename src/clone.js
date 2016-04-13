@@ -11,7 +11,7 @@ public.prototype.clone = function(deep)
     
     var output = [];
 
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         output.push(element.cloneNode(deep));
     });

@@ -8,7 +8,7 @@ public.prototype.value = function(value)
     var output = [];
     
     // Loop through current elements
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         // If no value is specified, return the current value of the input
         if(value === undefined)

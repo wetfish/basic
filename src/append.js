@@ -5,7 +5,7 @@
 public.prototype.append = function(content)
 {
     // Loop through current elements
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         if(typeof content == "string")
         {

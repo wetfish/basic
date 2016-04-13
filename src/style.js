@@ -13,7 +13,7 @@ public.prototype.style = function(style)
 
         this.forEach(properties, function(property)
         {
-            this.forEach(this.elements, function(element, index)
+            this.forEach(this.elements, function(element)
             {
                 element.style[property] = style[property];
             });
@@ -27,7 +27,7 @@ public.prototype.style = function(style)
     {
         var output = [];
 
-        this.forEach(this.elements, function(element, index)
+        this.forEach(this.elements, function(element)
         {
             var current = window.getComputedStyle(element);
             output.push(current[style]);

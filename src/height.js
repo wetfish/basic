@@ -13,7 +13,7 @@ public.prototype.height = function(mode)
     
     var output = [];
 
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         output.push(private.height(element, mode));
     });

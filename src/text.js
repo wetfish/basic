@@ -6,7 +6,7 @@
 public.prototype.text = function(content)
 {
     // Loop through current elements
-    this.forEach(this.elements, function(element, index)
+    this.forEach(this.elements, function(element)
     {
         element.innerHTML = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
     });
