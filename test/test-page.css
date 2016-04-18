@@ -1,0 +1,21 @@
+body {
+    background-color: #000;
+    min-height: 400px;
+    min-width: 600px;
+}
+
+p {
+    color: #fff;
+}
+
+.white {
+    color: #fff;
+}
+
+.black {
+    color: #000;
+}
+
+.italic {
+    font-style: italic;
+}
