@@ -6,7 +6,7 @@ var minimist = require('minimist');
 var extend = require('util')._extend;
 var watch = require('gulp-watch');
 var uglify = require('gulp-uglify');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
 var qunit = require('gulp-qunit');
 
 // Helper object for compiling scripts

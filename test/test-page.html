@@ -13,6 +13,11 @@
         <div id="qunit-fixture"></div>
 
         <div class="tests">
+            <!-- Testing $() selector matching -->
+            <div id="selector" class="selector"></div>
+            <div class="selector"></div>
+
+            <!-- Testing .value() -->
             <input class="get one" value="Great test">
             <input class="get two" value="Another test">
             <input class="set">
@@ -20,6 +25,7 @@
 
         <script src="../node_modules/qunitjs/qunit/qunit.js"></script>
         <script src="../dist/basic.js"></script>
+        <script src="_basic.js"></script>
         <script src="value.js"></script>
     </body>
 </html>
