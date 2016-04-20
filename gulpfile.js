@@ -7,6 +7,7 @@ var extend = require('util')._extend;
 var watch = require('gulp-watch');
 var uglify = require('gulp-uglify');
 var rename = require("gulp-rename");
+var qunit = require('gulp-qunit');
 
 // Helper object for compiling scripts
 var scripts =
@@ -44,6 +45,9 @@ var scripts =
         .pipe(rename(output.replace(/.js$/, '.min.js')))
         .pipe(uglify())
         .pipe(gulp.dest('./dist'));
+
+        // Now run tests
+        scripts.test();
     },
 
     watch: function()
@@ -73,9 +77,15 @@ var scripts =
         // Generate output with requested files
         scripts.compile(files, 'basic.generated.js');
     },
+
+    test: function()
+    {
+        gulp.src('./test/test-page.html').pipe(qunit());
+    },
 }
 
 gulp.task('default', ['compile', 'watch']);
 gulp.task('compile', scripts.compile);
 gulp.task('watch', scripts.watch);
 gulp.task('build', scripts.build);
+gulp.task('test', scripts.test);

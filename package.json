@@ -29,6 +29,7 @@
     "gulp-watch": "^4.2.4",
     "minimist": "^1.1.1",
     "gulp-rename": "^1.2.2",
-    "qunitjs": "~1.23.1"
+    "qunitjs": "~1.23.1",
+    "gulp-qunit": "~1.4.0"
   }
 }
