@@ -16,4 +16,10 @@ QUnit.test("Other basic functions", function(assert)
     });
 
     assert.deepEqual(input, output, '.forEach()');
+
+    var one = [1];
+    var two = [1, 2];
+
+    assert.equal(basic.returnAllOrOne(one), 1, '.returnAllOrOne() with a single result');
+    assert.deepEqual(basic.returnAllOrOne(two), [1, 2], '.returnAllOrOne() with two results');
 });
