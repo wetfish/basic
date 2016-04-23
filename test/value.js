@@ -1,14 +1,11 @@
-QUnit.test("Getting input value", function(assert)
+QUnit.test("Handling form inputs", function(assert)
 {
     var single = $('input.get.one').value();
-    assert.equal(single, 'Great test', 'Single value matched');
+    assert.equal(single, 'Great test', 'Getting the value of an input');
 
     var double = $('input.get').value();
-    assert.deepEqual(double, ['Great test', 'Another test'], 'Multiple values matched');
-});
+    assert.deepEqual(double, ['Great test', 'Another test'], 'Getting the value of multiple inputs');
 
-QUnit.test("Setting input value", function(assert)
-{
     $('input.set').value('Sealed forever');
-    assert.equal(document.querySelector('input.set').value, 'Sealed forever', 'Value set');
+    assert.equal(document.querySelector('input.set').value, 'Sealed forever', 'Setting the value of an input');
 });
