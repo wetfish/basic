@@ -1,15 +1,15 @@
 QUnit.test("Setting classes", function(assert)
 {
-    $('.class.one').addClass('test');    
-    assert.equal($('.class.one').el[0].className, 'class one test', 'Single class added');
+    $('.add .class.one').addClass('test');
+    assert.equal($('.add .class.one').el[0].className, 'class one test', 'Single class added');
 
-    $('.class.two').addClass('another test');
-    assert.equal($('.class.two').el[0].className, 'class two another test', 'Multiple classes added');
+    $('.add .class.two').addClass('another test');
+    assert.equal($('.add .class.two').el[0].className, 'class two another test', 'Multiple classes added');
 
-    $('.class.three').addClass('function').addClass('chaining');
-    assert.equal($('.class.three').el[0].className, 'class three function chaining', 'Multiple classes added via function chaining');
+    $('.add .class.three').addClass('function').addClass('chaining');
+    assert.equal($('.add .class.three').el[0].className, 'class three function chaining', 'Multiple classes added via function chaining');
 
-    $('.class').addClass('multiple');
+    $('.add .class').addClass('multiple');
 
     var expected =
     [
@@ -21,7 +21,7 @@ QUnit.test("Setting classes", function(assert)
     var output = [];
 
     var basic = new $;
-    basic.forEach($('.class').el, function(element)
+    basic.forEach($('.add .class').el, function(element)
     {
         output.push(element.className);
     })
