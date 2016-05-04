@@ -167,7 +167,7 @@
         // We're in Node or a CommonJS compatable environment
         module.exports = public;
     }
-    else if (typeof define === 'function' && define.amd)
+    else if(typeof define === 'function' && define.amd)
     {
         // We're in a browser being loaded with AMD (Require.js)
         define(function() { return public });
@@ -916,49 +916,6 @@
         return this.returnAllOrOne(output);
     }
 
-    ////////////////////////////////
-    // serialize() - get an object of all the values of inputs in 
-    // usage - $('.form').serialize();
-
-    public.prototype.data = function(key, value)
-    {
-        var output = [];
-        
-        // Loop through current elements
-        this.forEach(this.elements, function(element)
-        {
-            // Make sure the dataset is an object (for old versions of IE)
-            if(element.dataset === undefined)
-            {
-                element.dataset = {};
-            }
-            
-            // If no value is specified, return the current value of the data attribute
-            if(value === undefined)
-            {
-                // If this key isn't found
-                if(element.dataset[key] === undefined)
-                {
-                    // Check to see if it exists as an attribute (for old versions of IE)
-                    var attr = element.getAttribute('data-' + key);
-                    
-                    if(attr != null)
-                    {
-                        element.dataset[key] = attr;
-                    }
-                }
-
-                output.push(element.dataset[key])
-            }
-            else
-            {
-                element.dataset[key] = value;
-            }
-        });
-
-        return this.returnAllOrOne(output, false);
-    }
-
     // Depends on: ./deps/width.js, ./deps/height.js
 
     ////////////////////////////////
@@ -1038,6 +995,62 @@
         this.forEach(this.elements, function(element)
         {
             element.innerHTML = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        });
+
+        return this;
+    }
+
+    ////////////////////////////////
+    // toggle() - will either show or hide an element every time the function is called, or switch between classes
+    // usage - $('.selector').toggle(); // If the element is visible, it will be hidden. If the element is hidden, it will become visible
+    // usage - $('.selector').toggle('class'); // If the element has the class, it will be removed, otherwise it will be added
+
+    public.prototype.toggle = function(classNames)
+    {
+        if(classNames)
+        {
+            classNames = classNames.split(' ');
+        }
+
+        this.forEach(this.elements, function(element)
+        {
+            // If a class is being toggled
+            if(classNames)
+            {
+                var classes = element.className.split(' ');
+
+                classNames.forEach(function(className)
+                {
+                    var index = classes.indexOf(className);
+
+                    // Add the class if it doesn't exist
+                    if(index == -1)
+                    {
+                        classes.push(className);
+                    }
+
+                    // Or remove it if it does
+                    else
+                    {
+                        classes.splice(index, 1);
+                    }
+                });
+
+                element.className = classes.join(' ');
+            }
+
+            // Otherwise, just check if the element is currently being displayed
+            else
+            {
+                if($(element).style('display') == 'none')
+                {
+                    $(element).style({'display': 'block'});
+                }
+                else
+                {
+                    $(element).style({'display': 'none'});
+                }
+            }
         });
 
         return this;

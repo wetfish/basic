@@ -249,6 +249,13 @@
                 // Get an element's parent
                 console.log($('.hello').parent());
                 console.log($('.child').parents('.parent'));
+
+                // Toggling elements
+                $('button.toggle').on('click', function()
+                {
+                    $('.toggle.one').toggle();
+                    $('.toggle.two').toggle('white');
+                });
             });
         </script>
 
@@ -295,12 +302,16 @@
 
             <div class="transform">I'm transforming!!!</div>
             <div class="transform2">Meee tooo!!</div>
+
+            <div class="toggle one">This is some text</div>
+            <div class="toggle two white">So is this!</div>
         </div>
 
         <div class="content">
             <p class="hello">Hello world!</p>
             <p class="world">*blink*</p>
-            <input class="trigger" type="button" value="Make it grow">
+            <button class="trigger">Make it grow</button>
+            <button class="toggle">Toggle Stuff</button>
         </div>
 
         <div class="parent">
