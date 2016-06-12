@@ -4,7 +4,7 @@
 // Detect if we're in node or a browser
 if(typeof module === 'object' && module.exports)
 {
-    // We're in Node or a CommonJS compatable environment
+    // We're in Node or a CommonJS compatible environment
     module.exports = public;
 }
 else if(typeof define === 'function' && define.amd)
