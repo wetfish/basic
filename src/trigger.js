@@ -9,26 +9,26 @@ public.prototype.trigger = function(event, data)
 {
     if(data !== undefined)
     {
-        var params = {};
-
-        // Check if any special options exist
-        if(data.bubbles)
+        if(typeof data === "object")
         {
-            params.bubbles = data.bubbles;
-            delete data.bubbles;
+            var params = {};
+
+            // Check if any special options exist
+            if(data.bubbles)
+            {
+                params.bubbles = data.bubbles;
+                delete data.bubbles;
+            }
+
+            if(data.cancelable)
+            {
+                params.cancelable = data.cancelable;
+                delete data.cancelable;
+            }
         }
 
-        if(data.cancelable)
-        {
-            params.cancelable = data.cancelable;
-            delete data.cancelable;
-        }
-
-        // Put remaining data into the event details
-        if(Object.keys(data).length)
-        {
-            params.detail = data;
-        }
+        // Put data into the event details
+        params.detail = data;
     }
     
     // Create the event
