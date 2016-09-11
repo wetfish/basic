@@ -687,7 +687,17 @@
     public.prototype.parents = function(selector)
     {
         var elements = [];
-        var parents = document.querySelectorAll(selector);
+        var parents = [];
+
+        if(typeof selector === "object" && document.contains(selector))
+        {
+            parents = [selector];
+        }
+        else
+        {
+            parents = document.querySelectorAll(selector);
+        }
+
 
         this.forEach(this.elements, function(element)
         {
