@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../node_modules/qunitjs/qunit/qunit.css">
         <link rel="stylesheet" href="test-page.css">
     </head>
-    
+
     <body>
         <div id="qunit"></div>
         <div id="qunit-fixture"></div>
@@ -34,6 +34,11 @@
             <input class="get one" value="Great test">
             <input class="get two" value="Another test">
             <input class="set">
+
+            <!-- Testing .append() -->
+            <div class="append">
+                <button class="append-child"></button>
+            </div>
         </div>
 
         <script src="../node_modules/qunitjs/qunit/qunit.js"></script>
@@ -42,5 +47,6 @@
         <script src="addClass.js"></script>
         <script src="removeClass.js"></script>
         <script src="value.js"></script>
+        <script src="append.js"></script>
     </body>
 </html>
