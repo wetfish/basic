@@ -216,14 +216,23 @@
         // Loop through current elements
         this.forEach(this.elements, function(element)
         {
+            var child;
+
             if(typeof content == "string")
             {
-                element.innerHTML = element.innerHTML + content;
+                // Avoid interfering with the current DOM by using a
+                // DocumentFragment instead of tampering with the innerHTML
+                var range = document.createRange();
+                range.selectNode(document.body);
+
+                child = range.createContextualFragment(content);
             }
             else
             {
-                element.appendChild(content.cloneNode(true));
+                child = content.cloneNode(true);
             }
+
+            element.appendChild(child);
         });
 
         return this;

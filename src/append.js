@@ -8,17 +8,21 @@ public.prototype.append = function(content)
     this.forEach(this.elements, function(element)
     {
         var child;
+
         if(typeof content == "string")
         {
             // Avoid interfering with the current DOM by using a
             // DocumentFragment instead of tampering with the innerHTML
-            child = new DocumentFragment();
-            child.textContent = content;
+            var range = document.createRange();
+            range.selectNode(document.body);
+
+            child = range.createContextualFragment(content);
         }
         else
         {
             child = content.cloneNode(true);
         }
+
         element.appendChild(child);
     });
 

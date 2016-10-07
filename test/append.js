@@ -14,7 +14,11 @@ QUnit.test("Appending strings and elements", function(assert)
     el.dispatchEvent(evt);
     assert.equal(output.length, 1, 'Check if event remains bound after appending a string');
 
+    $('.append').append('<u>Appending some HTML</u>');
+    el.dispatchEvent(evt);
+    assert.equal(output.length, 2, 'Check if event remains bound after appending html');
+
     $('.append').append(appendBtn);
     el.dispatchEvent(evt);
-    assert.equal(output.length, 2, 'Check if event remains bound after appending an element');
+    assert.equal(output.length, 3, 'Check if event remains bound after appending an element');
 });
