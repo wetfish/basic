@@ -771,14 +771,18 @@
         // Loop through current elements
         this.forEach(this.elements, function(element)
         {
+            var child;
             if(typeof content == "string")
             {
-                element.innerHTML = content + element.innerHTML;
+                var range = document.createRange();
+                range.selectNode(document.body);
+                child = range.createContextualFragment(content);
             }
             else
             {
-                element.insertBefore(content.cloneNode(true), element.firstChild);
+                child = content.cloneNode(true);
             }
+            element.insertBefore(child, element.firstChild);
         });
 
         return this;
