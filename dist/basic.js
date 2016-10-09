@@ -37,6 +37,19 @@
         }
     }
 
+    // Helper function to return whether any element of the array satisfies the predicate function
+    public.prototype.some = function(array, predicate)
+    {
+        for(var i = 0, l = array.length; i < l; i++)
+        {
+            if (predicate.call(this, array[i], i))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Helper function to return either a single element or an array based on the length of the input given
     // Output should be an array
     // Fallback is the default value returned if there is no output
@@ -199,9 +212,10 @@
                 if(index == -1)
                 {
                     classes.push(className);
-                    element.className = classes.join(' ');
                 }
             });
+
+            element.className = classes.join(' ');
         });
 
         return this;
@@ -404,16 +418,15 @@
     }
 
     ////////////////////////////////
-    // removeClass() - remove a class from all matched nodes
+    // hasClass() - checks whether at least one of the matching element has
+    //              one or all of the given classes, depending on mode
     // usage - if($('.selector').hasClass('example')) { console.log('wow!'); }
 
     public.prototype.hasClass = function(classes, mode)
     {
         var classes = classes.split(' ');
-        var match = false;
 
-        // TODO: Break loop when match is found?
-        this.forEach(this.elements, function(element)
+        return this.some(this.elements, function(element)
         {
             // Reset matches between each loop
             var matches = {};
@@ -434,7 +447,7 @@
             {
                 if(Object.keys(matches).length)
                 {
-                    match = true;
+                    return true;
                 }
             }
 
@@ -443,12 +456,12 @@
             {
                 if(Object.keys(matches).length == classes.length)
                 {
-                    match = true;
+                    return true;
                 }
             }
-        });
 
-        return match;
+            return false;
+        });
     }
 
     // Depends on: ./deps/height.js
@@ -874,9 +887,10 @@
                 if(index != -1)
                 {
                     classes.splice(index, 1);
-                    element.className = classes.join(' ');
                 }
             });
+
+            element.className = classes.join(' ');
         });
 
         return this;
