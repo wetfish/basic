@@ -1,14 +1,13 @@
 ////////////////////////////////
-// removeClass() - remove a class from all matched nodes
+// hasClass() - checks whether at least one of the matching element has
+//              one or all of the given classes, depending on mode
 // usage - if($('.selector').hasClass('example')) { console.log('wow!'); }
 
 public.prototype.hasClass = function(classes, mode)
 {
     var classes = classes.split(' ');
-    var match = false;
 
-    // TODO: Break loop when match is found?
-    this.forEach(this.elements, function(element)
+    return this.some(this.elements, function(element)
     {
         // Reset matches between each loop
         var matches = {};
@@ -29,7 +28,7 @@ public.prototype.hasClass = function(classes, mode)
         {
             if(Object.keys(matches).length)
             {
-                match = true;
+                return true;
             }
         }
 
@@ -38,10 +37,10 @@ public.prototype.hasClass = function(classes, mode)
         {
             if(Object.keys(matches).length == classes.length)
             {
-                match = true;
+                return true;
             }
         }
-    });
 
-    return match;
+        return false;
+    });
 }

@@ -18,9 +18,10 @@ public.prototype.addClass = function(classNames)
             if(index == -1)
             {
                 classes.push(className);
-                element.className = classes.join(' ');
             }
         });
+
+        element.className = classes.join(' ');
     });
 
     return this;

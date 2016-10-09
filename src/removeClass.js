@@ -18,9 +18,10 @@ public.prototype.removeClass = function(classNames)
             if(index != -1)
             {
                 classes.splice(index, 1);
-                element.className = classes.join(' ');
             }
         });
+
+        element.className = classes.join(' ');
     });
 
     return this;
