@@ -5,11 +5,26 @@
 
 public.prototype.text = function(content)
 {
-    // Loop through current elements
-    this.forEach(this.elements, function(element)
-    {
-        element.innerHTML = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    });
+    if(content === null || content === undefined){
 
-    return this;
+		var children = this.elements[0].childNodes;
+	console.log(children);
+		for(var i = 0; i< children.length -1;i++){
+		   if( children[i].nodeName === "#text"){
+		   	return children[i].nodeValue.replace(/^\s+|\s+$/g, '');;
+		   }
+		 
+		}
+		
+    }
+    else
+    {
+        // Loop through current elements
+        this.forEach(this.elements, function(element)
+        {
+            element.innerHTML = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        });
+
+        return this;
+    }
 }
